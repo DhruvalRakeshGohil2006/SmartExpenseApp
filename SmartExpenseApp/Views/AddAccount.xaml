@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmartExpenseApp.Views.AddAccount"
+             Title="AddAccount"
+             BackgroundColor="#7F3DFF"  >
+    
+    <VerticalStackLayout Spacing="10">
+
+        <!--Title-->
+        <Label 
+            Text="Add New Account"
+            FontSize="Large"
+            Padding="20"
+            TextColor="White"
+            HorizontalOptions="Center" />
+
+        <!--Showing Balance-->
+        <VerticalStackLayout Padding="15,270,30,10" HorizontalOptions="Start" VerticalOptions="Center">
+            <Label 
+                Text="Balance" 
+                FontSize="28" 
+                TextColor="White"/>
+            <Entry 
+                Placeholder="₹00.0"
+                FontSize="64"
+                FontAttributes="Bold"
+                TextColor="White"
+                x:Name="AccountBalance" />
+        </VerticalStackLayout>
+
+        <!--Entering Account Details-->
+        <Frame 
+            BackgroundColor="White"
+            CornerRadius="20"
+            Padding="15"
+            Margin="0,15,0,0"
+            HasShadow="True"
+            HorizontalOptions="FillAndExpand">
+
+            <!-- Content inside the Frame -->
+            <VerticalStackLayout Spacing="15">
+                <!-- Name Entry -->
+                <Frame 
+                    BackgroundColor="White"
+                    CornerRadius="20"
+                    Padding="0"
+                    HasShadow="True"
+                    HorizontalOptions="FillAndExpand">
+                    <Entry Placeholder="Name" 
+                       BackgroundColor="Transparent" 
+                       TextColor="Black"
+                       FontSize="Large"
+                       HeightRequest="60"
+                       HorizontalOptions="Fill" />
+                </Frame>
+
+            <!-- Account Type Picker -->
+                <Frame
+                    BackgroundColor="White"
+                    CornerRadius="20"
+                    Padding="0"
+                    HasShadow="True"
+                    HorizontalOptions="FillAndExpand">
+                    <Picker Title="Account Type" 
+                        BackgroundColor="Transparent" 
+                        TextColor="Black"
+                        FontSize="Large"
+                        HeightRequest="60"
+                        HorizontalOptions="Fill">
+                        <Picker.Items>
+                            <x:String>Bank</x:String>
+                            <x:String>Cash</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </Frame>
+                
+                <!-- Continue Button -->
+                <Button Text="Continue" 
+                    BackgroundColor="#7F3DFF"
+                    TextColor="White"
+                    FontSize="Large"
+                    HeightRequest="50"
+                    CornerRadius="20"
+                    FontAttributes="Bold"
+                    Margin="0,40,0,10"
+                    HorizontalOptions="Fill" 
+                    VerticalOptions="End"/>
+            </VerticalStackLayout>
+        </Frame>
+
+
+    </VerticalStackLayout>
+</ContentPage>
