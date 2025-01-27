@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+using Syncfusion.Maui.Core.Hosting;
+using Microsoft.Extensions.Logging;
+using CommunityToolkit.Maui;
+using The49.Maui.BottomSheet;
 
 namespace SmartExpenseApp
 {
@@ -9,6 +12,10 @@ namespace SmartExpenseApp
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseBottomSheet()
+                // Initialize the .NET MAUI Community Toolkit
+                .UseMauiCommunityToolkit()
+                .ConfigureSyncfusionCore()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
