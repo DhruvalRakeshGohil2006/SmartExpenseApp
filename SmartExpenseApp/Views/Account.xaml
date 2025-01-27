@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
+xmlns:inputs="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+x:Class="SmartExpenseApp.Views.AddAccount"
+Title="AddAccount"
+BackgroundColor="#7F3DFF">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" Grid.Row="0">
+            <Image 
+                Source="Resources/Images/back_arrow.png" 
+                BackgroundColor="Transparent"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start"
+                HeightRequest="30">
+                <Image.Behaviors>
+                    <toolkit:IconTintColorBehavior TintColor="White" />
+                </Image.Behaviors>
+            </Image>
+            <Label 
+                Text="Add new account" 
+                BackgroundColor="Transparent" 
+                FontSize="20" 
+                TextColor="#FFFFFF" 
+                VerticalOptions="Center" 
+                HorizontalOptions="CenterAndExpand" 
+                HeightRequest="30"
+                WidthRequest="170"/>
+        </Grid>
+
+        <VerticalStackLayout BackgroundColor="White" Grid.Row="1" VerticalOptions="EndAndExpand" Padding="15" >
+
+            <!--<Label 
+                Text="Balance" 
+                FontSize="16" 
+                TextColor="Black" 
+                HorizontalOptions="Center"
+                VerticalOptions="End" 
+                HeightRequest="80" />
+            <Entry 
+                Placeholder="₹00.0"
+                FontSize="64"
+                FontAttributes="Bold"
+                TextColor="White"
+                x:Name="AccountBalance"
+                HorizontalOptions="StartAndExpand"
+                VerticalOptions="EndAndExpand"
+                HeightRequest="70"/>-->
+
+
+            <core:SfTextInputLayout 
+                Hint="Name" 
+                x:Name="AccountName"
+                ContainerBackground="White" 
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="End"
+                HeightRequest="80" 
+                IsEnabled="False">
+                <Entry x:Name="AccountNameEntry" Placeholder="Name" FontSize="16" BackgroundColor="White" TextColor="Black"/>
+            </core:SfTextInputLayout>
+            <Picker 
+                Title="Account Type" 
+                ItemsSource="{Binding AccountTypes}" 
+                SelectedIndexChanged="Picker_SelectedIndexChanged"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="End"
+                HeightRequest="80" 
+                FontSize="16" />
+
+            <FlexLayout Wrap="Wrap" AlignContent="Stretch">
+
+                <buttons:SfButton 
+                    x:Name="BankSbiButton"
+                    Clicked="BankSbiButton_Clicked"
+                    IsVisible="False" 
+                    ImageSource="bank_sbi.png" 
+                    ShowIcon="True"
+                    HorizontalOptions="StartAndExpand"
+                    HeightRequest="60"
+                    WidthRequest="70"
+                    Margin="5"
+                    ImageSize="40" 
+                    Background="LightGray" />
+
+                <buttons:SfButton 
+                    x:Name="BankIciciButton" 
+                    Clicked="BankIciciButton_Clicked"
+                    IsVisible="False" 
+                    ImageSource="bank_icici.png" 
+                    ShowIcon="True"
+                    HorizontalOptions="StartAndExpand"
+                    HeightRequest="60"
+                    WidthRequest="70"
+                    Margin="5"
+                    ImageSize="40" 
+                    Background="LightGray" />
+
+                <buttons:SfButton 
+                    x:Name="BankAxisButton" 
+                    Clicked="BankAxisButton_Clicked"
+                    IsVisible="False" 
+                    ImageSource="bank_axis.png" 
+                    ShowIcon="True"
+                    HorizontalOptions="StartAndExpand"
+                    HeightRequest="60"
+                    WidthRequest="70"
+                    Margin="5"
+                    ImageSize="40" 
+                    Background="LightGray" />
+
+                <buttons:SfButton 
+                    x:Name="BankBOBButton" 
+                    Clicked="BankBOBButton_Clicked"
+                    IsVisible="False" 
+                    ImageSource="bank_bob.png" 
+                    ShowIcon="True"
+                    HorizontalOptions="StartAndExpand"
+                    HeightRequest="60"
+                    WidthRequest="70"
+                    Margin="5" 
+                    ImageSize="40" 
+                    Background="LightGray" />
+
+                <buttons:SfButton 
+                    x:Name="BankAEButton" 
+                    Clicked="BankAEButton_Clicked"
+                    IsVisible="False" 
+                    ImageSource="bank_americanexpress.png" 
+                    ShowIcon="True"
+                    HorizontalOptions="StartAndExpand"
+                    HeightRequest="60"
+                    WidthRequest="70"
+                    Margin="5" 
+                    ImageSize="40"
+                    Background="LightGray"/>
+
+                <buttons:SfButton 
+                    x:Name="BankAUButton" 
+                    Clicked="BankAUButton_Clicked"
+                    IsVisible="False" 
+                    ImageSource="bank_au.png" 
+                    ShowIcon="True"
+                    HorizontalOptions="StartAndExpand"
+                    HeightRequest="60"
+                    WidthRequest="70" 
+                    Margin="5" 
+                    ImageSize="40"
+                    Background="LightGray" />
+
+                <buttons:SfButton 
+                    x:Name="BankBandhanButton" 
+                    Clicked="BankBandhanButton_Clicked"
+                    IsVisible="False" 
+                    ImageSource="bank_bandhan.png" 
+                    ShowIcon="True"
+                    HorizontalOptions="StartAndExpand"
+                    HeightRequest="60"
+                    WidthRequest="70" 
+                    Margin="5"
+                    ImageSize="40" 
+                    Background="LightGray" />
+
+                <buttons:SfButton 
+                    x:Name="BankOtherButton"
+                    Clicked="BankOtherButton_Clicked" 
+                    IsVisible="False" 
+                    Text="Other"
+                    HorizontalOptions="StartAndExpand"
+                    HeightRequest="60"
+                    WidthRequest="70" 
+                    Margin="5" 
+                    ImageSize="40" 
+                    Background="LightGray"/>
+            </FlexLayout>
+            
+
+            <Button 
+                Text="Continue" 
+                Margin="20"  
+                BackgroundColor="#7F3DFF" 
+                TextColor="White" 
+                CornerRadius="25"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="End"
+                HeightRequest="50"
+                WidthRequest="320"/>
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
