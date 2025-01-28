@@ -24,7 +24,9 @@ BackgroundColor="#7F3DFF">
                 BackgroundColor="Transparent"
                 VerticalOptions="Start" 
                 HorizontalOptions="Start"
-                HeightRequest="30">
+                HeightRequest="30"
+                WidthRequest="20"
+                Margin="10">
                 <Image.Behaviors>
                     <toolkit:IconTintColorBehavior TintColor="White" />
                 </Image.Behaviors>
@@ -92,7 +94,7 @@ BackgroundColor="#7F3DFF">
                     WidthRequest="70"
                     Margin="5"
                     ImageSize="40" 
-                    Background="LightGray" />
+                    Background="White" />
 
                 <buttons:SfButton 
                     x:Name="BankIciciButton" 
@@ -118,7 +120,7 @@ BackgroundColor="#7F3DFF">
                     WidthRequest="70"
                     Margin="5"
                     ImageSize="40" 
-                    Background="LightGray" />
+                    Background="White" />
 
                 <buttons:SfButton 
                     x:Name="BankBOBButton" 
