@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:inputs="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmartExpenseApp.Views.retype"
+             Title="PinCreation"
+             BackgroundColor="#7E44E3">
+
+    <ContentPage.Content>
+        <Grid VerticalOptions="Center" HorizontalOptions="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Label for Enter your Pin -->
+            <Label Grid.Row="0" Text=" Ok. Re type your PIN again" FontSize="24" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,20"/>
+
+            <!-- PIN Entry Dots -->
+            <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="Center" Padding="10" x:Name="PinDots">
+                <Frame x:Name="Dot1" WidthRequest="20" HeightRequest="20" BackgroundColor="{Binding PinDot1Color}" CornerRadius="10"/>
+                <Frame x:Name="Dot2" WidthRequest="20" HeightRequest="20" BackgroundColor="{Binding PinDot2Color}" BorderColor="White" CornerRadius="10" Margin="5,0"/>
+                <Frame x:Name="Dot3" WidthRequest="20" HeightRequest="20" BackgroundColor="{Binding PinDot3Color}" BorderColor="White" CornerRadius="10" Margin="5,0"/>
+                <Frame x:Name="Dot4" WidthRequest="20" HeightRequest="20" BackgroundColor="{Binding PinDot4Color}" BorderColor="White" CornerRadius="10" Margin="5,0"/>
+            </StackLayout>
+
+            <!-- PIN Number Pad -->
+            <Grid Grid.Row="2" Padding="20" ColumnSpacing="10" RowSpacing="10">
+                <!-- Reduced spacing here -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Number Pad Buttons with round shape -->
+                <Button Grid.Row="0" Grid.Column="0" Text="1" FontSize="24" TextColor="White" BackgroundColor="Transparent" Clicked="OnNumberButtonClicked" WidthRequest="60" HeightRequest="60" CornerRadius="30"/>
+                <Button Grid.Row="0" Grid.Column="1" Text="2" FontSize="24" TextColor="White" BackgroundColor="Transparent" Clicked="OnNumberButtonClicked" WidthRequest="60" HeightRequest="60" CornerRadius="30"/>
+                <Button Grid.Row="0" Grid.Column="2" Text="3" FontSize="24" TextColor="White" BackgroundColor="Transparent" Clicked="OnNumberButtonClicked" WidthRequest="60" HeightRequest="60" CornerRadius="30"/>
+
+                <Button Grid.Row="1" Grid.Column="0" Text="4" FontSize="24" TextColor="White" BackgroundColor="Transparent" Clicked="OnNumberButtonClicked" WidthRequest="60" HeightRequest="60" CornerRadius="30"/>
+                <Button Grid.Row="1" Grid.Column="1" Text="5" FontSize="24" TextColor="White" BackgroundColor="Transparent" Clicked="OnNumberButtonClicked" WidthRequest="60" HeightRequest="60" CornerRadius="30"/>
+                <Button Grid.Row="1" Grid.Column="2" Text="6" FontSize="24" TextColor="White" BackgroundColor="Transparent" Clicked="OnNumberButtonClicked" WidthRequest="60" HeightRequest="60" CornerRadius="30"/>
+
+                <Button Grid.Row="2" Grid.Column="0" Text="7" FontSize="24" TextColor="White" BackgroundColor="Transparent" Clicked="OnNumberButtonClicked" WidthRequest="60" HeightRequest="60" CornerRadius="30"/>
+                <Button Grid.Row="2" Grid.Column="1" Text="8" FontSize="24" TextColor="White" BackgroundColor="Transparent" Clicked="OnNumberButtonClicked" WidthRequest="60" HeightRequest="60" CornerRadius="30"/>
+                <Button Grid.Row="2" Grid.Column="2" Text="9" FontSize="24" TextColor="White" BackgroundColor="Transparent" Clicked="OnNumberButtonClicked" WidthRequest="60" HeightRequest="60" CornerRadius="30"/>
+
+                <!-- Zero, Backspace, and Submit Buttons -->
+                <Button Grid.Row="3" Grid.Column="0" Text="⌫" FontSize="24" TextColor="White" BackgroundColor="Transparent" Clicked="OnBackspaceButtonClicked" WidthRequest="60" HeightRequest="60" CornerRadius="30"/>
+                <Button Grid.Row="3" Grid.Column="1" Text="0" FontSize="24" TextColor="White" BackgroundColor="Transparent" Clicked="OnNumberButtonClicked" WidthRequest="60" HeightRequest="60" CornerRadius="30"/>
+                <Button x:Name="SubmitButton" Grid.Row="3" Grid.Column="2" Text="⟶" FontSize="24" TextColor="White" BackgroundColor="Transparent" Clicked="OnSubmitButtonClicked" WidthRequest="60" HeightRequest="60" CornerRadius="30"/>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
+
