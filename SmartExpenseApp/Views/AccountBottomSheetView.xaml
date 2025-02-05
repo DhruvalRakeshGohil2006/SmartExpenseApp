@@ -2,8 +2,8 @@
 <the49:BottomSheet xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:the49="https://schemas.the49.com/dotnet/2023/maui"
-            xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
-            xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
+            xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Toolkit.TextInputLayout;assembly=Syncfusion.Maui.Toolkit"
+            xmlns:buttons="clr-namespace:Syncfusion.Maui.Toolkit.Buttons;assembly=Syncfusion.Maui.Toolkit"
             x:Class="SmartExpenseApp.Views.AccountBottomSheetView">
 
     <the49:BottomSheet.Detents>
@@ -20,14 +20,14 @@
     </the49:BottomSheet.Detents>
     
     <VerticalStackLayout>
-        <core:SfTextInputLayout 
+        <inputLayout:SfTextInputLayout 
             Hint="Name" 
             ContainerBackground="White" 
             HorizontalOptions="StartAndExpand"
             VerticalOptions="End"
             HeightRequest="80" >
                 <Entry Placeholder="Name" BackgroundColor="White" TextColor="Black"/>   
-        </core:SfTextInputLayout>
+        </inputLayout:SfTextInputLayout>
         <Picker 
             Title="Account Type" 
             ItemsSource="{Binding AccountTypes}" 
