@@ -11,7 +11,7 @@ namespace SmartExpenseApp
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new NewPage1());
+            return new Window(new AppShell());
         }
     }
 }
