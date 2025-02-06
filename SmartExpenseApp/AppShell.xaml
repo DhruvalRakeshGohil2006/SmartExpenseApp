@@ -14,6 +14,7 @@
     Title="SmartExpenseApp">
 
     <ShellContent Route="login" ContentTemplate="{DataTemplate local:Login}" />
+    <!--<ShellContent Route="signup" ContentTemplate="{DataTemplate local:SignUp}" />-->
     
     <TabBar>
         <Tab Title="Home" Route="home" Icon="home_bottomicon.png">
