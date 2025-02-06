@@ -7,9 +7,9 @@ public partial class Login : ContentPage
 		InitializeComponent();
 	}
 
-    private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
-		Console.WriteLine("Tapped");
+        await Shell.Current.GoToAsync("signup");
     }
 
     private async void OnLoginButtonClicked(object sender, EventArgs e)

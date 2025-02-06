@@ -123,7 +123,7 @@
             </Frame>
         </HorizontalStackLayout>
 
-        <tabview:SfTabView x:Name="tabView" Grid.Row="3" HorizontalOptions="FillAndExpand" BackgroundColor="White" IndicatorBackground="#FCEED4" IndicatorPlacement="Fill" IndicatorCornerRadius="5">
+        <tabview:SfTabView x:Name="tabView" Grid.Row="3" HorizontalOptions="FillAndExpand" BackgroundColor="White" IndicatorBackground="#FCEED4" IndicatorPlacement="Fill" IndicatorCornerRadius="25">
             <tabview:SfTabView.Items>
                 <tabview:SfTabItem Header="Today">
                     <tabview:SfTabItem.Content>

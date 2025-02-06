@@ -101,11 +101,10 @@
 	  <MauiXaml Update="Views\ScrollSheet.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-
 	  <MauiXaml Update="Views\Transaction.xaml">
-
+		<Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\SignUp.xaml">
-
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
