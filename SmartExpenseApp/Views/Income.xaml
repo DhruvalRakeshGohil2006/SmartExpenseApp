@@ -1,0 +1,116 @@
+  <?xml version="1.0" encoding="utf-8" ?>
+    <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+xmlns:buttons="clr-namespace:Syncfusion.Maui.Toolkit.Buttons;assembly=Syncfusion.Maui.Toolkit"
+xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Toolkit.TextInputLayout;assembly=Syncfusion.Maui.Toolkit"
+xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+x:Class="SmartExpenseApp.Views.Account"
+Title="Add account"
+BackgroundColor="#00A86B">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" Grid.Row="0">
+                <Image 
+                Source="Resources/Images/back_arrow.png" 
+                BackgroundColor="Transparent"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start"
+                HeightRequest="30"
+                WidthRequest="20"
+                Margin="10">
+                    <Image.Behaviors>
+                        <toolkit:IconTintColorBehavior TintColor="White" />
+                    </Image.Behaviors>
+                </Image>
+                <Label 
+                Text="Add new account" 
+                BackgroundColor="Transparent" 
+                FontSize="20" 
+                TextColor="#FFFFFF" 
+                VerticalOptions="Center" 
+                HorizontalOptions="CenterAndExpand" 
+                HeightRequest="30"
+                WidthRequest="170"/>
+            </Grid>
+
+            <VerticalStackLayout BackgroundColor="White" Grid.Row="1" VerticalOptions="EndAndExpand" Padding="15" >
+
+                <!--<Label 
+                Text="Balance" 
+                FontSize="16" 
+                TextColor="Black" 
+                HorizontalOptions="Center"
+                VerticalOptions="End" 
+                HeightRequest="80" />
+            <Entry 
+                Placeholder="₹00.0"
+                FontSize="64"
+                FontAttributes="Bold"
+                TextColor="White"
+                x:Name="AccountBalance"
+                HorizontalOptions="StartAndExpand"
+                VerticalOptions="EndAndExpand"
+                HeightRequest="70"/>-->
+
+
+
+
+            <Frame CornerRadius="20" BackgroundColor="White" Padding="20" Margin="0">
+                <VerticalStackLayout Spacing="15">
+                    <!-- Category Picker -->
+                    <Picker Title="Category" FontSize="16">
+                        <Picker.Items>
+                            <x:String>Grocery</x:String>
+                            <x:String>Rent</x:String>
+                            <x:String>Utilities</x:String>
+                            <x:String>Dining</x:String>
+                            <x:String>Shopping</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                    <!-- Description Entry -->
+                    <Entry Placeholder="Description" FontSize="16" />
+
+                    <!-- Wallet Picker -->
+                    <Picker Title="Wallet" FontSize="16">
+                        <Picker.Items>
+                            <x:String>Bank</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                    <!-- Add Attachment -->
+
+                    <!-- Repeat Toggle -->
+
+                </VerticalStackLayout>
+            </Frame>
+
+
+
+
+
+            <Button 
+                Text="Continue" 
+                Margin="20"  
+                BackgroundColor="#7F3DFF" 
+                TextColor="White" 
+                CornerRadius="25"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="End"
+                HeightRequest="50"
+                WidthRequest="320"/>
+
+            </VerticalStackLayout>
+        </Grid>
+    </ContentPage>
+
+
+ 
