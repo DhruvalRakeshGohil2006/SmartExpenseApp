@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmartExpenseApp.Views.TransactionDetails"
+             Title="TransactionDetails">
+
+    <Grid Padding="20" RowDefinitions="Auto,Auto,Auto,Auto,*,Auto" RowSpacing="10">
+
+        <!-- Back Button and Trash Icon (Row 0) -->
+        <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto">
+            <Label Grid.Column="0" Text="&#xf060;" FontFamily="FontAwesome" VerticalOptions="Center" HorizontalTextAlignment="Center" />
+            <Label Grid.Column="1" Text="Detail Transaction" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium" />
+        </Grid>
+
+        <!-- Amount and Transaction Info (Row 1) -->
+        <Frame Grid.Row="1" BackgroundColor="#8A3FFC" CornerRadius="20" Padding="20" HorizontalOptions="FillAndExpand">
+            <Grid RowDefinitions="Auto,Auto,Auto">
+                <Label Grid.Row="0" Text="$120" FontSize="48" TextColor="White" HorizontalOptions="Center" />
+                <Label Grid.Row="1" Text="Buy some grocery" FontSize="18" TextColor="White" HorizontalOptions="Center" />
+                <DatePicker Grid.Row="2" TextColor="White" HorizontalOptions="Center" Date="2021-06-04" Format="D" />
+            </Grid>
+        </Frame>
+
+        <!-- Type, Category, Wallet Details (Row 2) -->
+        <Frame Grid.Row="2" BorderColor="LightGray" CornerRadius="10" Padding="10">
+            <Grid ColumnSpacing="15" HorizontalOptions="FillAndExpand" ColumnDefinitions="*,*,*">
+
+                <Grid Grid.Column="0" RowDefinitions="Auto,*" HorizontalOptions="Center">
+                    <Label Grid.Row="0" Text="Type" FontSize="14" TextColor="Gray" />
+                    <Picker Grid.Row="1" Title="Select Type" FontSize="16" TextColor="Black">
+                        <Picker.Items>
+                            <x:String>Expense</x:String>
+                            <x:String>Income</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </Grid>
+
+                <Grid Grid.Column="1" RowDefinitions="Auto,*" HorizontalOptions="Center">
+                    <Label Grid.Row="0" Text="Category" FontSize="14" TextColor="Gray" />
+                    <Picker Grid.Row="1" Title="Select Category" FontSize="16" TextColor="Black">
+                        <Picker.Items>
+                            <x:String>Shopping</x:String>
+                            <x:String>Food</x:String>
+                            <x:String>Entertainment</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </Grid>
+
+                <Grid Grid.Column="2" RowDefinitions="Auto,*" HorizontalOptions="Center">
+                    <Label Grid.Row="0" Text="Wallet" FontSize="14" TextColor="Gray" />
+                    <Picker Grid.Row="1" Title="Select Wallet" FontSize="16" TextColor="Black">
+                        <Picker.Items>
+                            <x:String>Wallet 1</x:String>
+                            <x:String>Wallet 2</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </Grid>
+            </Grid>
+        </Frame>
+
+        <!-- Description (Row 3) -->
+        <Grid Grid.Row="3" RowDefinitions="Auto,Auto">
+            <Label Grid.Row="0" Text="Description" FontSize="16" TextColor="Gray" />
+            <Label Grid.Row="1" Text="Hello Welcome to the smartexpense app" FontSize="14" TextColor="Black" />
+        </Grid>
+
+        <!-- Empty Grid to take up remaining space (Row 4) -->
+        <Grid Grid.Row="4" VerticalOptions="FillAndExpand"/>
+
+        <!-- Edit Button (Row 5) -->
+        <Button Grid.Row="5"
+                Text="Edit"
+                BackgroundColor="#8A3FFC"
+                TextColor="White"
+                CornerRadius="20"
+                FontSize="16"
+                HeightRequest="50"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="End" />
+    </Grid>
+</ContentPage>
