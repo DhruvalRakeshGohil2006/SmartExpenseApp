@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
-xmlns:inputs="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
-xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+xmlns:buttons="clr-namespace:Syncfusion.Maui.Toolkit.Buttons;assembly=Syncfusion.Maui.Toolkit"
+xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Toolkit.TextInputLayout;assembly=Syncfusion.Maui.Toolkit"
 xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-x:Class="SmartExpenseApp.Views.AddAccount"
-Title="AddAccount"
+x:Class="SmartExpenseApp.Views.Account"
+Title="Smart Expense - Add Account"
 BackgroundColor="#7F3DFF">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -18,31 +16,7 @@ BackgroundColor="#7F3DFF">
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Grid HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" Grid.Row="0">
-            <Image 
-                Source="Resources/Images/back_arrow.png" 
-                BackgroundColor="Transparent"
-                VerticalOptions="Start" 
-                HorizontalOptions="Start"
-                HeightRequest="30"
-                WidthRequest="20"
-                Margin="10">
-                <Image.Behaviors>
-                    <toolkit:IconTintColorBehavior TintColor="White" />
-                </Image.Behaviors>
-            </Image>
-            <Label 
-                Text="Add new account" 
-                BackgroundColor="Transparent" 
-                FontSize="20" 
-                TextColor="#FFFFFF" 
-                VerticalOptions="Center" 
-                HorizontalOptions="CenterAndExpand" 
-                HeightRequest="30"
-                WidthRequest="170"/>
-        </Grid>
-
-        <VerticalStackLayout BackgroundColor="White" Grid.Row="1" VerticalOptions="EndAndExpand" Padding="15" >
+        <VerticalStackLayout BackgroundColor="White" Grid.Row="0" VerticalOptions="EndAndExpand" Padding="15" >
 
             <!--<Label 
                 Text="Balance" 
@@ -62,7 +36,7 @@ BackgroundColor="#7F3DFF">
                 HeightRequest="70"/>-->
 
 
-            <core:SfTextInputLayout 
+            <inputLayout:SfTextInputLayout 
                 Hint="Name" 
                 x:Name="AccountName"
                 ContainerBackground="White" 
@@ -71,7 +45,7 @@ BackgroundColor="#7F3DFF">
                 HeightRequest="80" 
                 IsEnabled="False">
                 <Entry x:Name="AccountNameEntry" Placeholder="Name" FontSize="16" BackgroundColor="White" TextColor="Black"/>
-            </core:SfTextInputLayout>
+            </inputLayout:SfTextInputLayout>
             <Picker 
                 Title="Account Type" 
                 ItemsSource="{Binding AccountTypes}" 
@@ -94,7 +68,7 @@ BackgroundColor="#7F3DFF">
                     WidthRequest="70"
                     Margin="5"
                     ImageSize="40" 
-                    Background="White" />
+                    Background="LightGray" />
 
                 <buttons:SfButton 
                     x:Name="BankIciciButton" 
@@ -120,7 +94,7 @@ BackgroundColor="#7F3DFF">
                     WidthRequest="70"
                     Margin="5"
                     ImageSize="40" 
-                    Background="White" />
+                    Background="LightGray" />
 
                 <buttons:SfButton 
                     x:Name="BankBOBButton" 
@@ -188,16 +162,17 @@ BackgroundColor="#7F3DFF">
             </FlexLayout>
             
 
-            <Button 
-                Text="Continue" 
-                Margin="20"  
-                BackgroundColor="#7F3DFF" 
-                TextColor="White" 
-                CornerRadius="25"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="End"
-                HeightRequest="50"
-                WidthRequest="320"/>
+            <Button x:Name="Continue_Button"
+                    Text="Continue" 
+                    Margin="20"  
+                    BackgroundColor="#7F3DFF" 
+                    TextColor="White" 
+                    CornerRadius="25"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="End"
+                    HeightRequest="50"
+                    WidthRequest="320"
+                    Clicked="Continue_Button_Clicked"/>
 
         </VerticalStackLayout>
     </Grid>

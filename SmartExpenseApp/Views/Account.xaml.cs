@@ -1,14 +1,12 @@
 using SmartExpenseApp.ViewModels;
-using System.Diagnostics;
-using The49.Maui.BottomSheet;
 
 namespace SmartExpenseApp.Views;
 
-public partial class AddAccount : ContentPage
+public partial class Account : ContentPage
 {
     private AccountBottomSheetView accountBottomSheetView;
 
-    public AddAccount()
+    public Account()
 	{
 		InitializeComponent();
         BindingContext = new AccountViewModel();
@@ -77,9 +75,9 @@ public partial class AddAccount : ContentPage
         //    accountBottomSheetView.ShowAsync(Window);
         //}
 
-        var sheet = new ScrollSheet();
+        //var sheet = new ScrollSheet();
 
-        sheet.ShowAsync(Window);
+        //sheet.ShowAsync(Window);
     }
 
     private void BankSbiButton_Clicked(object sender, EventArgs e)
@@ -128,5 +126,17 @@ public partial class AddAccount : ContentPage
     {
         AccountNameEntry.Text = "Other";
         AccountName.IsEnabled = true;
+    }
+
+    private async void Continue_Button_Clicked(object sender, EventArgs e)
+    {
+        if (String.IsNullOrEmpty(AccountNameEntry.Text))
+        {
+            await DisplayAlert("Information", "Please select an Account", "OK");
+        }
+        else
+        {
+            await Shell.Current.GoToAsync("//home");
+        }
     }
 }

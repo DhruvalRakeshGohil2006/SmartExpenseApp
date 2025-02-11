@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:tabview="clr-namespace:Syncfusion.Maui.Toolkit.TabView;assembly=Syncfusion.Maui.Toolkit"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmartExpenseApp.Views.HomeScreen"
+             Title="Smart Expense - Home">
+    <!--xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"-->
+
+    <Grid VerticalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="#A845FF" Offset="0.0" />
+                <GradientStop Color="#FFFFFF" Offset="0.8" />
+                <GradientStop Color="#FFFFFF" Offset="1.0" />
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Grid Grid.Row="0" VerticalOptions="Start">
+            <!--<core:SfAvatarView 
+                ContentType="AvatarCharacter"
+                AvatarName="Alex"
+                Background="Beige"
+                Margin="10"
+                VerticalOptions="Center"
+                HorizontalOptions="Start"  
+                HeightRequest="50"
+                CornerRadius="25"
+                WidthRequest="50" />-->
+
+            <mct:AvatarView
+                SemanticProperties.Description="Sample AvatarView showing size at 16x16 and 'micro' font."
+                ImageSource="profile_icon"
+                WidthRequest="40" 
+                HeightRequest="40" 
+                HorizontalOptions="Start"
+                Margin="10"/>
+
+            <Picker 
+                Title="October"
+                HorizontalTextAlignment="Center"
+                ItemsSource="{Binding Months}" 
+                VerticalOptions="Center" 
+                HorizontalOptions="CenterAndExpand" 
+                HeightRequest="30"
+                WidthRequest="90" />
+        </Grid>
+
+        <VerticalStackLayout 
+            Grid.Row="1"
+            Padding="10" >
+
+            <Label 
+            Text="Account Balance" 
+            FontSize="16"
+            TextColor="Black"
+            VerticalOptions="CenterAndExpand"
+            HorizontalOptions="Center"/>
+
+            <Label 
+            Text="₹3800" 
+            FontSize="62"
+            TextColor="Black"
+            FontAttributes="Bold"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+
+
+        <HorizontalStackLayout 
+            Spacing="15" 
+            Padding="18,5, 10, 20"
+            Grid.Row="2" 
+            HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent" >
+
+            <Frame CornerRadius="20" BackgroundColor="#00A86B" WidthRequest="150">
+                <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="income_icon.png" WidthRequest="40" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"/>
+                    <Label Text="Income" FontSize="12" TextColor="#FFFFFF" Margin="5,0,0,0" Grid.Row="0" Grid.Column="1" />
+                    <Label Text="$5000" FontSize="18" FontAttributes="Bold" Margin="5,0,0,0" TextColor="#FFFFFF" Grid.Row="1" Grid.Column="1" />
+                </Grid>
+            </Frame>
+            <Frame CornerRadius="20" BackgroundColor="#FD3C4A" WidthRequest="150">
+                <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="expense_icon.png" WidthRequest="40" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" />
+                    <Label Text="Expenses" FontSize="12" TextColor="#FFFFFF" Margin="5,0,0,0"  Grid.Row="0" Grid.Column="1" />
+                    <Label Text="$1200" FontSize="18" FontAttributes="Bold" Margin="5,0,0,0" TextColor="#FFFFFF" Grid.Row="1" Grid.Column="1" />
+                </Grid>
+            </Frame>
+        </HorizontalStackLayout>
+
+        <tabview:SfTabView x:Name="tabView" Grid.Row="3" HorizontalOptions="FillAndExpand" BackgroundColor="White" IndicatorBackground="#FCEED4" IndicatorPlacement="Fill" IndicatorCornerRadius="25">
+            <tabview:SfTabView.Items>
+                <tabview:SfTabItem Header="Today">
+                    <tabview:SfTabItem.Content>
+                        <Grid BackgroundColor="White">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                                 Text="Recent Transactions" 
+                                 FontSize="17" FontAttributes="Bold" 
+                                 HorizontalOptions="Start"
+                                 VerticalOptions="Center"
+                                 Margin="10"/>
+                            <Button Grid.Row="0"
+                                 Text="See All" 
+                                 TextColor="#7F3DFF" 
+                                 CornerRadius="18"
+                                 HeightRequest="5"
+                                 FontSize="12"
+                                 FontAttributes="Bold"
+                                 BackgroundColor="#EEE5FF" 
+                                 HorizontalOptions="End"
+                                 VerticalOptions="Center"
+                                 Margin="10"/>
+                            
+                        </Grid>
+                    </tabview:SfTabItem.Content>
+                </tabview:SfTabItem>
+
+                <tabview:SfTabItem Header="Week">
+                    <tabview:SfTabItem.Content>
+                        <Grid BackgroundColor="White">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                                Text="Recent Transactions" 
+                                FontSize="18" FontAttributes="Bold" 
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                Margin="10"/>
+                            <Button Grid.Row="0"
+                                Text="See All" 
+                                TextColor="#7F3DFF" 
+                                BackgroundColor="#EEE5FF" 
+                                HorizontalOptions="End"
+                                VerticalOptions="Start"
+                                Margin="10"/>
+                        </Grid>
+                    </tabview:SfTabItem.Content>
+                </tabview:SfTabItem>
+
+                <tabview:SfTabItem Header="Month">
+                    <tabview:SfTabItem.Content>
+                        <Grid BackgroundColor="White">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                                Text="Recent Transactions" 
+                                FontSize="18" FontAttributes="Bold" 
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                Margin="10"/>
+                            <Button Grid.Row="0"
+                                Text="See All" 
+                                TextColor="#7F3DFF" 
+                                BackgroundColor="#EEE5FF" 
+                                HorizontalOptions="End"
+                                VerticalOptions="Start"
+                                Margin="10"/>
+                        </Grid>
+                    </tabview:SfTabItem.Content>
+                </tabview:SfTabItem>
+
+                <tabview:SfTabItem Header="Year">
+                    <tabview:SfTabItem.Content>
+                        <Grid>
+                            <Label
+                                Text="Recent Transactions" 
+                                FontSize="18" FontAttributes="Bold" 
+                                HorizontalOptions="Start"
+                                VerticalOptions="Start"
+                                VerticalTextAlignment="Center"
+                                Margin="20"/>
+                            <Button
+                                Text="See All" 
+                                TextColor="#7F3DFF" 
+                                BackgroundColor="#EEE5FF" 
+                                HorizontalOptions="End"
+                                VerticalOptions="Start"
+                                Margin="10"/>
+                        </Grid>
+                    </tabview:SfTabItem.Content>
+                </tabview:SfTabItem>
+
+            </tabview:SfTabView.Items>
+        </tabview:SfTabView>
+
+        <CollectionView x:Name="collectionView" Grid.Row="4" BackgroundColor="White" ItemsSource="{Binding Transactions}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" ImageSource="profile_icon" BackgroundColor="Beige"/>
+                        <Label Grid.Row="0" Grid.Column="1" Margin="5, 0, 0, 0" Text="{Binding Title}" FontSize="16" TextColor="#292B2D" FontAttributes="Bold" />
+                        <Label Grid.Row="1" Grid.Column="1" Margin="5, 0, 0, 0" Text="{Binding Description}" FontSize="12" TextColor="#91919F" />
+                        <Label Grid.Row="0" Grid.Column="2" Text="{Binding Amount}" FontSize="14" TextColor="Green" FontAttributes="Bold" />
+                        <Label Grid.Row="1" Grid.Column="2" Text="{Binding Date}" FontSize="12" TextColor="#91919F" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
