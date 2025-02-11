@@ -86,6 +86,9 @@
 	  <MauiXaml Update="Views\AccountBottomSheetView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Expense.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\GraphAndTrends.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

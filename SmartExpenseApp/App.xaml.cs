@@ -11,7 +11,7 @@ namespace SmartExpenseApp
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new  Income());
+            return new Window(new  Expense());
         }
     }
 }
