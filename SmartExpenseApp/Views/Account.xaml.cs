@@ -127,4 +127,16 @@ public partial class Account : ContentPage
         AccountNameEntry.Text = "Other";
         AccountName.IsEnabled = true;
     }
+
+    private async void Continue_Button_Clicked(object sender, EventArgs e)
+    {
+        if (String.IsNullOrEmpty(AccountNameEntry.Text))
+        {
+            await DisplayAlert("Information", "Please select an Account", "OK");
+        }
+        else
+        {
+            await Shell.Current.GoToAsync("//home");
+        }
+    }
 }

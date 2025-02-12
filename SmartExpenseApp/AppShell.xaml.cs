@@ -8,7 +8,10 @@ namespace SmartExpenseApp
         {
             InitializeComponent();
 
-            // Customize the floating action button
+            // Register routes
+            Routing.RegisterRoute("signup", typeof(SignUp));
+            Routing.RegisterRoute("login", typeof(Login));
+            Routing.RegisterRoute("account", typeof(Account));
         }
 
         private void Shell_Appearing(object sender, EventArgs e)
