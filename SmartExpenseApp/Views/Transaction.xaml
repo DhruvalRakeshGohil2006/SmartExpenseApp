@@ -3,10 +3,54 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SmartExpenseApp.Views.Transaction"
              Title="Smart Expense - Transactions">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Picker x:Name="TimeFilter"
+                Grid.Row="0"
+                Title="Today" 
+                ItemsSource="{Binding TimeFilter}"
+                HorizontalOptions="Start"
+                VerticalOptions="Center"
+                HeightRequest="40" 
+                FontSize="16" />
+
+        <Button x:Name="FilterButton"
+                Text="Filter"
+                Grid.Row="0"
+                Margin="5"
+                VerticalOptions="Center"
+                HorizontalOptions="End"
+                HeightRequest="20"
+                FontSize="16"/>
+
+        <CollectionView x:Name="collectionView" Grid.Row="1" BackgroundColor="White" ItemsSource="{Binding Transactions}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" ImageSource="profile_icon" BackgroundColor="Beige"/>
+                        <Label Grid.Row="0" Grid.Column="1" Margin="5, 0, 0, 0" Text="{Binding Title}" FontSize="16" TextColor="#292B2D" FontAttributes="Bold" />
+                        <Label Grid.Row="1" Grid.Column="1" Margin="5, 0, 0, 0" Text="{Binding Description}" FontSize="12" TextColor="#91919F" />
+                        <Label Grid.Row="0" Grid.Column="2" Text="{Binding Amount}" FontSize="14" TextColor="Green" FontAttributes="Bold" />
+                        <Label Grid.Row="1" Grid.Column="2" Text="{Binding Date}" FontSize="12" TextColor="#91919F" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
 </ContentPage>
