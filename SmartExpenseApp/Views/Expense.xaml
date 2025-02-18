@@ -20,7 +20,7 @@
         <VerticalStackLayout Grid.Row="0" Padding="10,450,30,10" VerticalOptions="StartAndExpand">
             <Label Text="How much?" FontSize="20" TextColor="#FCFCFC" 
                    HorizontalOptions="Start" FontAttributes="Bold"/>
-            <Entry Text="₹0" FontSize="54" Keyboard="Numeric" WidthRequest="200" TextColor="#FCFCFC" FontAttributes="Bold"
+            <Entry Placeholder="₹0" FontSize="54" Keyboard="Numeric" WidthRequest="200" TextColor="#FCFCFC" FontAttributes="Bold"
                    HorizontalOptions="Start"/>
         </VerticalStackLayout>
 

@@ -104,9 +104,6 @@
 	  <MauiXaml Update="Views\Onboarding.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Profile.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\ScrollSheet.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
