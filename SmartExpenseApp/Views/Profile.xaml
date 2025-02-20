@@ -15,7 +15,7 @@
 
             <!-- Profile Image -->
             <Frame WidthRequest="80" HeightRequest="80" CornerRadius="40" BorderColor="violet" Padding="0" Grid.Column="0">
-                <Image Source="mann.png" Aspect="AspectFill" />
+                <Image Source="profile_icon.png" Aspect="AspectFill" />
             </Frame>
 
             <!-- Username and Edit Button -->
@@ -31,7 +31,7 @@
             <!-- Account Button -->
             <Frame CornerRadius="10" BackgroundColor="#F0F0FF" Padding="15">
                 <HorizontalStackLayout>
-                    <Image Source="acc.png" WidthRequest="30" HeightRequest="30" />
+                    <Image Source="account_wallet_icon.png" WidthRequest="30" HeightRequest="30" />
                     <Label Text="Account" FontSize="Medium" VerticalOptions="Center" Margin="10,0,0,0"/>
                 </HorizontalStackLayout>
             </Frame>
@@ -39,7 +39,7 @@
             <!-- Settings Button -->
             <Frame CornerRadius="10" BackgroundColor="#F0F0FF" Padding="15">
                 <HorizontalStackLayout>
-                    <Image Source="settings.png" WidthRequest="30" HeightRequest="30" />
+                    <Image Source="account_settings_icon.png" WidthRequest="30" HeightRequest="30" />
                     <Label Text="Settings" FontSize="Medium" VerticalOptions="Center" Margin="10,0,0,0"/>
                 </HorizontalStackLayout>
             </Frame>
@@ -47,15 +47,15 @@
             <!-- Export Data Button -->
             <Frame CornerRadius="10" BackgroundColor="#F0F0FF" Padding="15">
                 <HorizontalStackLayout>
-                    <Image Source="export.png" WidthRequest="30" HeightRequest="30" />
+                    <Image Source="account_upload_icon.png" WidthRequest="30" HeightRequest="30" />
                     <Label Text="Export Data" FontSize="Medium" VerticalOptions="Center" Margin="10,0,0,0"/>
                 </HorizontalStackLayout>
             </Frame>
 
             <!-- Logout Button -->
-            <Frame CornerRadius="10" BackgroundColor="#FFE0E0" Padding="15">
+            <Frame CornerRadius="10" BackgroundColor="#F0F0FF" Padding="15">
                 <HorizontalStackLayout>
-                    <Image Source="logout_icon_placeholder.png" WidthRequest="30" HeightRequest="30" />
+                    <Image Source="account_logout_icon.png" WidthRequest="30" HeightRequest="30" />
                     <Label Text="Logout" FontSize="Medium" VerticalOptions="Center" Margin="10,0,0,0"/>
                 </HorizontalStackLayout>
             </Frame>
