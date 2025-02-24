@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:tabview="clr-namespace:Syncfusion.Maui.Toolkit.TabView;assembly=Syncfusion.Maui.Toolkit"
-             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SmartExpenseApp.Views.HomeScreen"
-             Title="Smart Expense - Home">
+<ContentPage
+    x:Class="SmartExpenseApp.Views.HomeScreen"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:tabview="clr-namespace:Syncfusion.Maui.Toolkit.TabView;assembly=Syncfusion.Maui.Toolkit"
+    Title="Smart Expense - Home">
     <!--xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"-->
 
     <Grid VerticalOptions="FillAndExpand">
@@ -22,9 +23,9 @@
 
         <Grid.Background>
             <LinearGradientBrush>
-                <GradientStop Color="#A845FF" Offset="0.0" />
-                <GradientStop Color="#FFFFFF" Offset="0.8" />
-                <GradientStop Color="#FFFFFF" Offset="1.0" />
+                <GradientStop Offset="0.0" Color="#A845FF" />
+                <GradientStop Offset="0.8" Color="#FFFFFF" />
+                <GradientStop Offset="1.0" Color="#FFFFFF" />
             </LinearGradientBrush>
         </Grid.Background>
 
@@ -41,51 +42,53 @@
                 WidthRequest="50" />-->
 
             <mct:AvatarView
-                SemanticProperties.Description="Sample AvatarView showing size at 16x16 and 'micro' font."
-                ImageSource="profile_icon"
-                WidthRequest="40" 
-                HeightRequest="40" 
+                Margin="10"
+                HeightRequest="40"
                 HorizontalOptions="Start"
-                Margin="10"/>
+                ImageSource="profile_icon"
+                SemanticProperties.Description="Sample AvatarView showing size at 16x16 and 'micro' font."
+                WidthRequest="40" />
 
-            <Picker 
+            <!--<Picker 
                 Title="October"
                 HorizontalTextAlignment="Center"
                 ItemsSource="{Binding Months}" 
                 VerticalOptions="Center" 
                 HorizontalOptions="CenterAndExpand" 
                 HeightRequest="30"
-                WidthRequest="90" />
+                WidthRequest="90" />-->
         </Grid>
 
-        <VerticalStackLayout 
-            Grid.Row="1"
-            Padding="10" >
+        <VerticalStackLayout Grid.Row="1" Padding="10">
 
-            <Label 
-            Text="Account Balance" 
-            FontSize="16"
-            TextColor="Black"
-            VerticalOptions="CenterAndExpand"
-            HorizontalOptions="Center"/>
+            <Label
+                FontSize="16"
+                HorizontalOptions="Center"
+                Text="Account Balance"
+                TextColor="Black"
+                VerticalOptions="CenterAndExpand" />
 
-            <Label 
-            Text="₹3800" 
-            FontSize="62"
-            TextColor="Black"
-            FontAttributes="Bold"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"/>
+            <Label
+                FontAttributes="Bold"
+                FontSize="62"
+                HorizontalOptions="Center"
+                Text="₹3800"
+                TextColor="Black"
+                VerticalOptions="Center" />
         </VerticalStackLayout>
 
 
-        <HorizontalStackLayout 
-            Spacing="15" 
+        <HorizontalStackLayout
+            Grid.Row="2"
+            BackgroundColor="Transparent"
+            HorizontalOptions="CenterAndExpand"
             Padding="18,5, 10, 20"
-            Grid.Row="2" 
-            HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent" >
+            Spacing="15">
 
-            <Frame CornerRadius="20" BackgroundColor="#00A86B" WidthRequest="150">
+            <Frame
+                BackgroundColor="#00A86B"
+                CornerRadius="20"
+                WidthRequest="150">
                 <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Center">
 
                     <Grid.RowDefinitions>
@@ -98,12 +101,33 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <Image Source="income_icon.png" WidthRequest="40" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"/>
-                    <Label Text="Income" FontSize="12" TextColor="#FFFFFF" Margin="5,0,0,0" Grid.Row="0" Grid.Column="1" />
-                    <Label Text="$5000" FontSize="18" FontAttributes="Bold" Margin="5,0,0,0" TextColor="#FFFFFF" Grid.Row="1" Grid.Column="1" />
+                    <Image
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="0"
+                        Source="income_icon.png"
+                        WidthRequest="40" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="5,0,0,0"
+                        FontSize="12"
+                        Text="Income"
+                        TextColor="#FFFFFF" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="5,0,0,0"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        Text="₹5000"
+                        TextColor="#FFFFFF" />
                 </Grid>
             </Frame>
-            <Frame CornerRadius="20" BackgroundColor="#FD3C4A" WidthRequest="150">
+            <Frame
+                BackgroundColor="#FD3C4A"
+                CornerRadius="20"
+                WidthRequest="150">
                 <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Center">
 
                     <Grid.RowDefinitions>
@@ -116,14 +140,40 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <Image Source="expense_icon.png" WidthRequest="40" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" />
-                    <Label Text="Expenses" FontSize="12" TextColor="#FFFFFF" Margin="5,0,0,0"  Grid.Row="0" Grid.Column="1" />
-                    <Label Text="$1200" FontSize="18" FontAttributes="Bold" Margin="5,0,0,0" TextColor="#FFFFFF" Grid.Row="1" Grid.Column="1" />
+                    <Image
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="0"
+                        Source="expense_icon.png"
+                        WidthRequest="40" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="5,0,0,0"
+                        FontSize="12"
+                        Text="Expenses"
+                        TextColor="#FFFFFF" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="5,0,0,0"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        Text="₹1200"
+                        TextColor="#FFFFFF" />
                 </Grid>
             </Frame>
         </HorizontalStackLayout>
 
-        <tabview:SfTabView x:Name="tabView" Grid.Row="3" HorizontalOptions="FillAndExpand" BackgroundColor="White" IndicatorBackground="#FCEED4" IndicatorPlacement="Fill" IndicatorCornerRadius="25">
+        <tabview:SfTabView
+            x:Name="tabView"
+            Grid.Row="3"
+            BackgroundColor="White"
+            HorizontalOptions="FillAndExpand"
+            IndicatorBackground="#FCEED4"
+            IndicatorCornerRadius="25"
+            IndicatorPlacement="Fill"
+            SelectionChanged="tabView_SelectionChanged">
             <tabview:SfTabView.Items>
                 <tabview:SfTabItem Header="Today">
                     <tabview:SfTabItem.Content>
@@ -132,24 +182,27 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <Label Grid.Row="0"
-                                 Text="Recent Transactions" 
-                                 FontSize="17" FontAttributes="Bold" 
-                                 HorizontalOptions="Start"
-                                 VerticalOptions="Center"
-                                 Margin="10"/>
-                            <Button Grid.Row="0"
-                                 Text="See All" 
-                                 TextColor="#7F3DFF" 
-                                 CornerRadius="18"
-                                 HeightRequest="5"
-                                 FontSize="12"
-                                 FontAttributes="Bold"
-                                 BackgroundColor="#EEE5FF" 
-                                 HorizontalOptions="End"
-                                 VerticalOptions="Center"
-                                 Margin="10"/>
-                            
+                            <Label
+                                Grid.Row="0"
+                                Margin="10"
+                                FontAttributes="Bold"
+                                FontSize="17"
+                                HorizontalOptions="Start"
+                                Text="Recent Transactions"
+                                VerticalOptions="Center" />
+                            <Button
+                                Grid.Row="0"
+                                Margin="10"
+                                BackgroundColor="#EEE5FF"
+                                CornerRadius="18"
+                                FontAttributes="Bold"
+                                FontSize="12"
+                                HeightRequest="5"
+                                HorizontalOptions="End"
+                                Text="See All"
+                                TextColor="#7F3DFF"
+                                VerticalOptions="Center" />
+
                         </Grid>
                     </tabview:SfTabItem.Content>
                 </tabview:SfTabItem>
@@ -161,19 +214,22 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <Label Grid.Row="0"
-                                Text="Recent Transactions" 
-                                FontSize="18" FontAttributes="Bold" 
+                            <Label
+                                Grid.Row="0"
+                                Margin="10"
+                                FontAttributes="Bold"
+                                FontSize="18"
                                 HorizontalOptions="Start"
-                                VerticalOptions="Center"
-                                Margin="10"/>
-                            <Button Grid.Row="0"
-                                Text="See All" 
-                                TextColor="#7F3DFF" 
-                                BackgroundColor="#EEE5FF" 
+                                Text="Recent Transactions"
+                                VerticalOptions="Center" />
+                            <Button
+                                Grid.Row="0"
+                                Margin="10"
+                                BackgroundColor="#EEE5FF"
                                 HorizontalOptions="End"
-                                VerticalOptions="Start"
-                                Margin="10"/>
+                                Text="See All"
+                                TextColor="#7F3DFF"
+                                VerticalOptions="Start" />
                         </Grid>
                     </tabview:SfTabItem.Content>
                 </tabview:SfTabItem>
@@ -185,24 +241,27 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <Label Grid.Row="0"
-                                Text="Recent Transactions" 
-                                FontSize="18" FontAttributes="Bold" 
+                            <Label
+                                Grid.Row="0"
+                                Margin="10"
+                                FontAttributes="Bold"
+                                FontSize="18"
                                 HorizontalOptions="Start"
-                                VerticalOptions="Center"
-                                Margin="10"/>
-                            <Button Grid.Row="0"
-                                Text="See All" 
-                                TextColor="#7F3DFF" 
-                                BackgroundColor="#EEE5FF" 
+                                Text="Recent Transactions"
+                                VerticalOptions="Center" />
+                            <Button
+                                Grid.Row="0"
+                                Margin="10"
+                                BackgroundColor="#EEE5FF"
                                 HorizontalOptions="End"
-                                VerticalOptions="Start"
-                                Margin="10"/>
+                                Text="See All"
+                                TextColor="#7F3DFF"
+                                VerticalOptions="Start" />
                         </Grid>
                     </tabview:SfTabItem.Content>
                 </tabview:SfTabItem>
 
-                <tabview:SfTabItem Header="Year">
+                <!--<tabview:SfTabItem Header="Year">
                     <tabview:SfTabItem.Content>
                         <Grid>
                             <Label
@@ -221,12 +280,16 @@
                                 Margin="10"/>
                         </Grid>
                     </tabview:SfTabItem.Content>
-                </tabview:SfTabItem>
+                </tabview:SfTabItem>-->
 
             </tabview:SfTabView.Items>
         </tabview:SfTabView>
 
-        <CollectionView x:Name="collectionView" Grid.Row="4" BackgroundColor="White" ItemsSource="{Binding Transactions}">
+        <CollectionView
+            x:Name="RecentTransactionsCollectionView"
+            Grid.Row="4"
+            BackgroundColor="White"
+            ItemsSource="{Binding FilteredTransactions}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10">
@@ -241,11 +304,40 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" ImageSource="profile_icon" BackgroundColor="Beige"/>
-                        <Label Grid.Row="0" Grid.Column="1" Margin="5, 0, 0, 0" Text="{Binding Title}" FontSize="16" TextColor="#292B2D" FontAttributes="Bold" />
-                        <Label Grid.Row="1" Grid.Column="1" Margin="5, 0, 0, 0" Text="{Binding Description}" FontSize="12" TextColor="#91919F" />
-                        <Label Grid.Row="0" Grid.Column="2" Text="{Binding Amount}" FontSize="14" TextColor="Green" FontAttributes="Bold" />
-                        <Label Grid.Row="1" Grid.Column="2" Text="{Binding Date}" FontSize="12" TextColor="#91919F" />
+                        <Button
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Grid.Column="0"
+                            BackgroundColor="Beige"
+                            ImageSource="profile_icon" />
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Margin="5, 0, 0, 0"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            Text="{Binding Title}"
+                            TextColor="#292B2D" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="5, 0, 0, 0"
+                            FontSize="12"
+                            Text="{Binding Description}"
+                            TextColor="#91919F" />
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            FontAttributes="Bold"
+                            FontSize="14"
+                            Text="{Binding Amount}"
+                            TextColor="Green" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            FontSize="12"
+                            Text="{Binding Date}"
+                            TextColor="#91919F" />
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

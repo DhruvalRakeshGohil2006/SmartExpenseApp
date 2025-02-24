@@ -24,7 +24,7 @@
                                        HorizontalOptions="CenterAndExpand"
                                        HeightRequest="80"
                                        WidthRequest="350">
-            <Entry x:Name="EmailEntry" />
+            <Entry x:Name="EmailEntry" Text="abc@gmail.com" />
         </inputLayout:SfTextInputLayout>
 
         <!-- Password Entry with Visibility Toggle -->
@@ -38,7 +38,7 @@
                                HorizontalOptions="CenterAndExpand"
                                HeightRequest="80"
                                WidthRequest="350">
-            <Entry x:Name="PasswordEntry" />
+            <Entry x:Name="PasswordEntry" Text="pass@123" />
         </inputLayout:SfTextInputLayout>
 
         <!-- Login Button -->

@@ -12,7 +12,7 @@ namespace SmartExpenseApp.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public string Amount { get; set; }
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
     }
 
 }
