@@ -1,3 +1,4 @@
+using SmartExpenseApp.Utilities;
 using SmartExpenseApp.ViewModels;
 
 namespace SmartExpenseApp.Views;
@@ -9,6 +10,7 @@ public partial class Transaction : ContentPage
 		InitializeComponent();
 
         BindingContext = new TransactionViewModel();
-		BindingContext = new HomeScreenViewModel();
+		BindingContext = new HomeScreenViewModel(SmartExpenseEnums.TransactionsFilterEnums.Today);
+        BindingContext = new GroupedTransactionsViewModel();
     }
 }
