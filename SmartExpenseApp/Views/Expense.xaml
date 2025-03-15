@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:buttons="clr-namespace:Syncfusion.Maui.Toolkit.Buttons;assembly=Syncfusion.Maui.Toolkit"
+             xmlns:dateTimePicker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
              xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Toolkit.TextInputLayout;assembly=Syncfusion.Maui.Toolkit"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -10,17 +11,17 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <!-- Red Section -->
             <RowDefinition Height="*" />
+            <!-- Red Section -->
+            <RowDefinition Height="Auto" />
             <!-- White Section -->
         </Grid.RowDefinitions>
 
         <!-- Red Background with Amount Display -->
-        <VerticalStackLayout Grid.Row="0" Padding="10,450,30,10" VerticalOptions="StartAndExpand">
+        <VerticalStackLayout Grid.Row="0" Margin="20" VerticalOptions="EndAndExpand">
             <Label Text="How much?" FontSize="20" TextColor="#FCFCFC" 
                    HorizontalOptions="Start" FontAttributes="Bold"/>
-            <Entry Placeholder="₹0" FontSize="54" Keyboard="Numeric" WidthRequest="200" TextColor="#FCFCFC" FontAttributes="Bold"
+            <Entry Placeholder="₹0" FontSize="54" Keyboard="Numeric" WidthRequest="200" PlaceholderColor="#FFFFFF" TextColor="#FFFFFF" FontAttributes="Bold"
                    HorizontalOptions="Start"/>
         </VerticalStackLayout>
 
@@ -28,6 +29,28 @@
         <VerticalStackLayout BackgroundColor="White" Grid.Row="1" VerticalOptions="End" Padding="15">
             <Frame CornerRadius="20" BackgroundColor="White"  Padding="20" Margin="0">
                 <VerticalStackLayout Spacing="15">
+                    <HorizontalStackLayout>
+                        <Entry Placeholder="Date" FontSize="16" TextColor="Black" IsReadOnly="True" HorizontalOptions="FillAndExpand"/>
+
+                        <Border x:Name="frame" IsVisible="{OnPlatform WinUI=True, Android=True, Default=False}" StrokeThickness="1" BackgroundColor="White" StrokeShape="RoundRectangle 5,5,5,5" HorizontalOptions="Center" VerticalOptions="Center" Margin="0" Padding="0">
+                            <dateTimePicker:SfDateTimePicker x:Name="TransactionDateTimePicker" IsOpen="False" Mode="Dialog">
+                                <dateTimePicker:SfDateTimePicker.FooterView>
+                                    <dateTimePicker:PickerFooterView ShowOkButton="True" Height="40" />
+                                </dateTimePicker:SfDateTimePicker.FooterView>
+                            </dateTimePicker:SfDateTimePicker>
+                        </Border>
+
+                        <Button Text="Open Date Time picker" 
+                                x:Name="PickerTransactionDateButton"
+                                Clicked="Button_Clicked"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                HeightRequest="50" 
+                                WidthRequest="150">
+                        </Button>
+                    </HorizontalStackLayout>
+                    
+
                     <!-- Category Picker -->
                     <Picker Title="Category" FontSize="16" TextColor="Black">
                         <Picker.Items>

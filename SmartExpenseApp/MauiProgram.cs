@@ -13,7 +13,7 @@ namespace SmartExpenseApp
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
-            .ConfigureSyncfusionCore()
+                .ConfigureSyncfusionCore()
                 .UseBottomSheet()
                 // Initialize the .NET MAUI Community Toolkit
                 .UseMauiCommunityToolkit()
