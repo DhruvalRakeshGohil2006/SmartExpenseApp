@@ -3,9 +3,9 @@ using SmartExpenseApp.ViewModels;
 
 namespace SmartExpenseApp.Views;
 
-public partial class Transaction : ContentPage
+public partial class TransactionsListPage : ContentPage
 {
-	public Transaction()
+	public TransactionsListPage()
 	{
 		InitializeComponent();
 

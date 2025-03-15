@@ -15,14 +15,14 @@
 
     <ShellContent Route="login" ContentTemplate="{DataTemplate local:Login}" />
     <!--<ShellContent Route="signup" ContentTemplate="{DataTemplate local:SignUp}" />-->
-    
+
     <TabBar>
         <Tab Title="Home" Route="home" Icon="home_bottomicon.png">
             <ShellContent ContentTemplate="{DataTemplate local:HomeScreen}" />
         </Tab>
 
         <Tab Title="Transactions" Route="transactions" Icon="transaction_bottomicon.png">
-            <ShellContent ContentTemplate="{DataTemplate local:Transaction}" />
+            <ShellContent ContentTemplate="{DataTemplate local:TransactionsListPage}" />
         </Tab>
 
         <Tab Title="Trends" Route="trends" Icon="graphstrends_bottomicon.png">
@@ -33,5 +33,4 @@
             <ShellContent ContentTemplate="{DataTemplate local:Profile}" />
         </Tab>
     </TabBar>
-
 </Shell>
