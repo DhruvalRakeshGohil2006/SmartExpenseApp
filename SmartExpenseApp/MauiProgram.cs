@@ -3,6 +3,8 @@ using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
 using The49.Maui.BottomSheet;
 using Syncfusion.Maui.Toolkit.Hosting;
+using SmartExpenseApp.Data;
+using SmartExpenseApp.Views;
 
 namespace SmartExpenseApp
 {
@@ -11,9 +13,10 @@ namespace SmartExpenseApp
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
+
             builder
                 .UseMauiApp<App>()
-            .ConfigureSyncfusionCore()
+                .ConfigureSyncfusionCore()
                 .UseBottomSheet()
                 // Initialize the .NET MAUI Community Toolkit
                 .UseMauiCommunityToolkit()
@@ -24,8 +27,13 @@ namespace SmartExpenseApp
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Services.AddSingleton<HomeScreen>();
+            builder.Services.AddTransient<HomeScreen>();
+            builder.Services.AddSingleton<SmartExpenseAppDatabase>();
+
+
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
