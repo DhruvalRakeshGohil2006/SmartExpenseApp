@@ -91,5 +91,18 @@ public partial class AddTransactionPage : ContentPage
 
         App.Database.SaveTransactionAsync(transaction);
         DisplayAlert("Success", "Transaction Saved!", "OK");
+
+        ResetAllFields(TransactionTypeSegmentedControl.SelectedIndex);
+    }
+
+    private void ResetAllFields(int? transactionTypeSelectedIndex)
+    {
+        // Reset all fields
+        AmountEntry.Text = string.Empty;
+        TitleEntry.Text = string.Empty;
+        DateEntry.Text = string.Empty;
+        CategoryPicker.SelectedItem = null;
+        SourcePicker.SelectedItem = null;
+        TransactionTypeSegmentedControl.SelectedIndex = transactionTypeSelectedIndex;
     }
 }

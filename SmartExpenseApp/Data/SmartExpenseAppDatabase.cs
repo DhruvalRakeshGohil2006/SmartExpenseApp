@@ -64,6 +64,15 @@ namespace SmartExpenseApp.Data
 
         public async Task<int> SaveTransactionAsync(Transaction item)
         {
+            if (item.TransactionType == TransactionType.Income)
+            {
+                TotalCreditTransactionsAmount += double.Parse(item.Amount);
+            }
+            else if (item.TransactionType == TransactionType.Expense)
+            {
+                TotalDebitTransactionsAmount += double.Parse(item.Amount);
+            }
+
             if (item.ID != 0)
             {
                 return await database.UpdateAsync(item);

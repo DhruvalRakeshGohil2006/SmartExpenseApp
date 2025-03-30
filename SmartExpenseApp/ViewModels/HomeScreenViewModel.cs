@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
+using static SmartExpenseApp.Utilities.SmartExpenseEnums;
 
 namespace SmartExpenseApp.ViewModels
 {
@@ -95,8 +96,14 @@ namespace SmartExpenseApp.ViewModels
         {
             Task.Run(async () => await LoadTransactions()).Wait();
 
+            TotalCreditTransactionsAmount = 0;
+            TotalDebitTransactionsAmount = 0;
+
             foreach (var transaction in transactions)
+            {
+                UpdateTransactionAmounts(transaction.TransactionType, transaction.Amount);
                 FilteredTransactions.Add(transaction);
+            }
 
             if (tabViewCurrentSelectedIndex == 0)
             {
@@ -212,22 +219,25 @@ namespace SmartExpenseApp.ViewModels
                     await _smartExpenseAppDatabase.DeleteAllTransactionsAsync();
 
                     await _smartExpenseAppDatabase.TransformAndSaveSMSMessagesAsync(SMSMessages);
-
-                    UpdateTransactionAmounts();
                 }
 #endif
             }
         }
 
-        private void UpdateTransactionAmounts()
+        private void UpdateTransactionAmounts(TransactionType transaction, string amount)
         {
-            TotalDebitTransactionsAmount = _smartExpenseAppDatabase.TotalDebitTransactionsAmount;
-            TotalCreditTransactionsAmount = _smartExpenseAppDatabase.TotalCreditTransactionsAmount;
-            Balance = _smartExpenseAppDatabase.Balance;
-
-            OnPropertyChanged(nameof(TotalDebitTransactionsAmount));
-            OnPropertyChanged(nameof(TotalCreditTransactionsAmount));
-            OnPropertyChanged(nameof(Balance));
+            if (transaction == TransactionType.Income)
+            {
+                TotalCreditTransactionsAmount += double.Parse(amount);
+                OnPropertyChanged(nameof(TotalCreditTransactionsAmount));
+                OnPropertyChanged(nameof(Balance));
+            }
+            else
+            {
+                TotalDebitTransactionsAmount += double.Parse(amount);
+                OnPropertyChanged(nameof(TotalDebitTransactionsAmount));
+                OnPropertyChanged(nameof(Balance));
+            }
         }
 
         private async Task<PermissionStatus> CheckAndRequestSMSPermission()
