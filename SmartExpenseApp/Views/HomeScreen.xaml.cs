@@ -1,5 +1,5 @@
+using MvvmHelpers.Commands;
 using SmartExpenseApp.Data;
-using SmartExpenseApp.Models;
 using SmartExpenseApp.Utilities;
 using SmartExpenseApp.ViewModels;
 
@@ -14,42 +14,37 @@ public partial class HomeScreen : ContentPage
     {
         InitializeComponent();
 
-        BindingContext = viewModel = new HomeScreenViewModel(SmartExpenseEnums.TransactionsFilterEnums.Today);
+        BindingContext = viewModel =
+            new HomeScreenViewModel(SmartExpenseEnums.TransactionsFilterEnums.Today, smartExpenseAppDatabase);
 
         database = smartExpenseAppDatabase;
+    }
+
+    private void tabView_SelectionChanged(object sender, Syncfusion.Maui.Toolkit.TabView.TabSelectionChangedEventArgs e)
+    {
+        viewModel.TabViewCurrentSelectedIndex = e.NewIndex;
+
+        viewModel.GetFilteredTransactionList(viewModel.TabViewCurrentSelectedIndex);
     }
 
     protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {
         base.OnNavigatedTo(args);
 
-        var transactions = await database.GetTransactionsAsync();
-
-        if (transactions.Count > 0)
-        {
-            MainThread.BeginInvokeOnMainThread(() =>
+        MainThread.BeginInvokeOnMainThread(
+            async () =>
             {
-                viewModel.FilteredTransactions.Clear();
+                viewModel.IsBusy = true;
 
-                foreach (var transaction in transactions)
-                    viewModel.FilteredTransactions.Add(transaction);
+                viewModel.TotalCreditTransactionsAmount = 0;
+                viewModel.TotalDebitTransactionsAmount = 0;
+                viewModel.Balance = 0;
+
+                await ((AsyncCommand<int>)viewModel.ReadSMSCommand).ExecuteAsync(Constants.SMSMessagesMaxFetchCount);
+
+                viewModel.GetFilteredTransactionList(viewModel.TabViewCurrentSelectedIndex);
+
+                viewModel.IsBusy = false;
             });
-        }
-    }
-
-    private void tabView_SelectionChanged(object sender, Syncfusion.Maui.Toolkit.TabView.TabSelectionChangedEventArgs e)
-    {
-        if (e.NewIndex == 0)
-        {
-            viewModel.FilterItems(SmartExpenseEnums.TransactionsFilterEnums.Today);
-        }
-        else if (e.NewIndex == 1)
-        {
-            viewModel.FilterItems(SmartExpenseEnums.TransactionsFilterEnums.Week);
-        }
-        else if (e.NewIndex == 2)
-        {
-            viewModel.FilterItems(SmartExpenseEnums.TransactionsFilterEnums.Month);
-        }
     }
 }

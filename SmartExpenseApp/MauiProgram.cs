@@ -1,10 +1,11 @@
-using Syncfusion.Maui.Core.Hosting;
-using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
-using The49.Maui.BottomSheet;
-using Syncfusion.Maui.Toolkit.Hosting;
+using Microsoft.Extensions.Logging;
 using SmartExpenseApp.Data;
+using SmartExpenseApp.Utilities;
 using SmartExpenseApp.Views;
+using Syncfusion.Maui.Core.Hosting;
+using Syncfusion.Maui.Toolkit.Hosting;
+using The49.Maui.BottomSheet;
 
 namespace SmartExpenseApp
 {
@@ -29,8 +30,15 @@ namespace SmartExpenseApp
 
             builder.Services.AddSingleton<HomeScreen>();
             builder.Services.AddTransient<HomeScreen>();
-            builder.Services.AddSingleton<SmartExpenseAppDatabase>();
 
+            builder.Services.AddSingleton<AddTransactionPage>();
+            builder.Services.AddTransient<AddTransactionPage>();
+
+            builder.Services.AddSingleton<TransactionsListPage>();
+            builder.Services.AddTransient<TransactionsListPage>();
+
+            builder.Services.AddSingleton<SmartExpenseAppDatabase>(provider =>
+                new SmartExpenseAppDatabase(Constants.DatabasePath));
 
 #if DEBUG
             builder.Logging.AddDebug();

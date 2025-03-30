@@ -7,7 +7,31 @@
             Today,
             Week,
             Month
-            //Year
+        }
+
+        public enum TransactionType
+        {
+            Expense,
+            Income,
+            Scan
+        }
+
+        public enum TransactionCategory
+        {
+            Travel,
+            Food,
+            Shopping,
+            Health,
+            Education,
+            Others
+        }
+
+        public enum TransactionSource
+        {
+            SBI,
+            BOB,
+            ICICI,
+            Cash
         }
     }   
 }

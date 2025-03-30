@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 namespace SmartExpenseApp.ViewModels
 {
@@ -16,7 +11,7 @@ namespace SmartExpenseApp.ViewModels
             AccountTypes = new ObservableCollection<string>
             {
                 "Bank",
-                "Wallet",
+                "Source",
             };
         }
     }

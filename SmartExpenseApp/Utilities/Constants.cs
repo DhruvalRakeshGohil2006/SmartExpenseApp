@@ -14,5 +14,9 @@
 
         public static string DatabasePath =>
             Path.Combine(FileSystem.AppDataDirectory, DatabaseFilename);
+
+        public const string SyncfusionLicenseKey = "Ngo9BigBOggjHTQxAR8/V1NMaF5cXmBCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdmWXxccXRcR2FdUUVyWEo=";
+
+        public const int SMSMessagesMaxFetchCount = 300;
     }
 }
