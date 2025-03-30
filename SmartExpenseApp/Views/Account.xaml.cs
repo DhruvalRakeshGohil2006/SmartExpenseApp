@@ -12,26 +12,7 @@ public partial class Account : ContentPage
         BindingContext = new AccountViewModel();
 
         accountBottomSheetView = new AccountBottomSheetView();
-       
     }
-
-    //protected override void OnAppearing()
-    //{
-    //    base.OnAppearing();
-
-    //    try
-    //    {
-    //        if (Window != null && accountBottomSheetView != null)
-    //        {
-    //            accountBottomSheetView.ShowAsync(Window);
-    //        }
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        Debug.WriteLine(ex.Message);
-    //    }
-
-    //}
 
     private void Picker_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -46,9 +27,8 @@ public partial class Account : ContentPage
         {
             ToggleBankButtonsVisiblity(false);
             AccountName.IsEnabled = false;
-            AccountNameEntry.Text = "Wallet";
+            AccountNameEntry.Text = "Source";
         }
-
     }
 
     private void ToggleBankButtonsVisiblity(bool isVisible)
@@ -61,23 +41,6 @@ public partial class Account : ContentPage
         BankAUButton.IsVisible = isVisible;
         BankBandhanButton.IsVisible = isVisible;
         BankOtherButton.IsVisible = isVisible;
-    }
-
-    private void Entry_TextChanged(object sender, TextChangedEventArgs e)
-    {
-
-    }
-
-    private void Button_Clicked(object sender, EventArgs e)
-    {
-        //if (Window != null && accountBottomSheetView != null)
-        //{
-        //    accountBottomSheetView.ShowAsync(Window);
-        //}
-
-        //var sheet = new ScrollSheet();
-
-        //sheet.ShowAsync(Window);
     }
 
     private void BankSbiButton_Clicked(object sender, EventArgs e)

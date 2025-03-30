@@ -1,6 +1,7 @@
 ﻿using SmartExpenseApp.Models;
-using SmartExpenseApp.Utilities;
 using SQLite;
+using System.Text.RegularExpressions;
+using static SmartExpenseApp.Utilities.SmartExpenseEnums;
 
 namespace SmartExpenseApp.Data
 {
@@ -8,39 +9,70 @@ namespace SmartExpenseApp.Data
     {
         SQLiteAsyncConnection database;
 
-        async Task Init()
+        private double totalDebitTransactionsAmount;
+        public double TotalDebitTransactionsAmount
+        {
+            get => totalDebitTransactionsAmount;
+            set
+            {
+                totalDebitTransactionsAmount = value;
+                UpdateBalance();
+            }
+        }
+
+        private double totalCreditTransactionsAmount;
+        public double TotalCreditTransactionsAmount
+        {
+            get => totalCreditTransactionsAmount;
+            set
+            {
+                totalCreditTransactionsAmount = value;
+                UpdateBalance();
+            }
+        }
+
+        private double balance;
+        public double Balance
+        {
+            get => balance;
+            set => balance = value;
+        }
+
+        private void UpdateBalance()
+        {
+            Balance = TotalCreditTransactionsAmount - TotalDebitTransactionsAmount;
+        }
+
+        public SmartExpenseAppDatabase(string dbPath)  
         {
             if (database is not null)
                 return;
 
-            database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
-            var result = await database.CreateTableAsync<Transaction>();
+            database = new SQLiteAsyncConnection(dbPath);
+            database.CreateTableAsync<Transaction>().Wait();
         }
 
         public async Task<List<Transaction>> GetTransactionsAsync()
         {
-            await Init();
             return await database.Table<Transaction>().ToListAsync();
         }
 
-        //public async Task<List<Transaction>> GetItemsNotDoneAsync()
-        //{
-        //    await Init();
-        //    return await database.Table<Transaction>().Where(t => t.Done).ToListAsync();
-
-        //    // SQL queries are also possible
-        //    //return await database.QueryAsync<Transaction>("SELECT * FROM [Transaction] WHERE [Done] = 0");
-        //}
-
         public async Task<Transaction> GetTransactionAsync(int id)
         {
-            await Init();
             return await database.Table<Transaction>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
         public async Task<int> SaveTransactionAsync(Transaction item)
         {
-            await Init();
+            if (item.TransactionType == TransactionType.Income)
+            {
+                TotalCreditTransactionsAmount += double.Parse(item.Amount);
+            }
+            else if (item.TransactionType == TransactionType.Expense)
+            {
+                TotalDebitTransactionsAmount += double.Parse(item.Amount);
+            }
+
             if (item.ID != 0)
             {
                 return await database.UpdateAsync(item);
@@ -53,8 +85,107 @@ namespace SmartExpenseApp.Data
 
         public async Task<int> DeleteTransactionAsync(Transaction item)
         {
-            await Init();
             return await database.DeleteAsync(item);
+        }
+
+        public async Task<int> DeleteAllTransactionsAsync()
+        {
+            return await database.ExecuteAsync("DELETE FROM [Transaction] where IsManual=0");
+        }
+
+        public async Task<int> AddSMSMessageTransactionsAsync(IEnumerable<Transaction> transactions)
+        {
+            return await database.InsertAllAsync(transactions);
+        }
+
+        public async Task<int> TransformAndSaveSMSMessagesAsync(IEnumerable<SMSMessageModel> smsMessages)
+        {
+            var transactions = new List<Transaction>();
+
+            TotalCreditTransactionsAmount = 0;
+            TotalDebitTransactionsAmount = 0;
+            Balance = 0;
+
+            foreach (var sms in smsMessages)
+            {
+                var transactionType = DetermineTransactionType(sms.Message);
+
+                var transaction = new Transaction
+                {
+                    Title = ExtractTitleFromMessage(sms.Message),
+                    Description = sms.Message,
+                    Amount = ExtractAmountFromMessage(sms.Message, transactionType),
+                    Date = DateTime.Parse(sms.Date),
+                    Category = "SMS",
+                    Source = sms.Address,
+                    TransactionType = transactionType,
+                    IsManual = 0
+                };
+
+                transactions.Add(transaction);
+            }
+
+            return await AddSMSMessageTransactionsAsync(transactions);
+        }
+
+        private string ExtractAmountFromMessage(string message, TransactionType transactionType)
+        {
+            Match match = null;
+
+            if (transactionType == TransactionType.Income)
+            {
+                match = Regex.Match(message, @"INR \s*\d+(\.\d{1,2})?");
+            }
+            else
+            {
+                match = Regex.Match(message, @"debited by \s*\d+(\.\d{1,2})?");
+            }
+
+            string amount = string.Empty;
+
+            if (match.Success && transactionType == TransactionType.Income)
+            {
+                amount = match.Value.Replace("INR", "").Trim();
+                TotalCreditTransactionsAmount += double.Parse(amount);
+                return amount;
+            }
+            else if (match.Success && transactionType == TransactionType.Expense)
+            {
+                amount = match.Value.Replace("debited by", "").Trim();
+                TotalDebitTransactionsAmount += double.Parse(amount);
+                return amount;
+            }
+
+            return "0";
+        }
+
+        private TransactionType DetermineTransactionType(string message)
+        {
+            if (message.Contains("credited", StringComparison.OrdinalIgnoreCase))
+            {
+                return TransactionType.Income;
+            }
+            else if (message.Contains("debited", StringComparison.OrdinalIgnoreCase))
+            {
+                return TransactionType.Expense;
+            }
+
+            return TransactionType.Expense;
+        }
+
+        private string ExtractTitleFromMessage(string message)
+        {
+            Match match = null;
+
+            string pattern = @"(?:at|to|from|via)\s+(.+?)\s+Refno";
+            match = Regex.Match(message, pattern);
+
+            if (match.Success)
+            {
+                return match.Groups[1].Value;
+            }
+            
+            return "0";
         }
     }
 }
