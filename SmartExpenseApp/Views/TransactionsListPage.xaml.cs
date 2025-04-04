@@ -13,8 +13,8 @@ public partial class TransactionsListPage : ContentPage
 	{
 		InitializeComponent();
 
-        BindingContext = new TransactionViewModel();
-		BindingContext = new HomeScreenViewModel(SmartExpenseEnums.TransactionsFilterEnums.Today, smartExpenseAppDatabase);
+  //      BindingContext = new TransactionViewModel();
+		//BindingContext = new HomeScreenViewModel(SmartExpenseEnums.TransactionsFilterEnums.Today, smartExpenseAppDatabase);
         BindingContext = viewModel = new GroupedTransactionsViewModel(smartExpenseAppDatabase);
 
         database = smartExpenseAppDatabase;

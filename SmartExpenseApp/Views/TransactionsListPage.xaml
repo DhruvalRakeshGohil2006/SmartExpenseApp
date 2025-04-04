@@ -32,7 +32,9 @@
             Grid.Row="1"
             BackgroundColor="White"
             IsGrouped="true"
-            ItemsSource="{Binding GroupedTransactions}">
+            ItemsSource="{Binding GroupedTransactions}"
+            SelectionMode="Single"
+            SelectedItem="{Binding SelectedTransaction, Mode=TwoWay}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10">
@@ -140,6 +142,9 @@
                         Text="{Binding Date}" />
                 </DataTemplate>
             </CollectionView.GroupHeaderTemplate>
+            <!--<CollectionView.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding TransactionSelectedCommand}" CommandParameter="{Binding}" />
+            </CollectionView.GestureRecognizers>-->
         </CollectionView>
     </Grid>
 </ContentPage>

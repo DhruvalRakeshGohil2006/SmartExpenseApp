@@ -62,6 +62,13 @@ namespace SmartExpenseApp.Data
             return await database.Table<Transaction>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
+        public async Task<Transaction> GetTransactionByIdAsync(int id)
+        {
+            return await database.Table<Transaction>()
+                            .Where(t => t.ID == id) // Filter by TransactionId
+                            .FirstOrDefaultAsync();
+        }
+
         public async Task<int> SaveTransactionAsync(Transaction item)
         {
             if (item.TransactionType == TransactionType.Income)

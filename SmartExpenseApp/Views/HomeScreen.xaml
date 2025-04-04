@@ -43,7 +43,11 @@
                 HorizontalOptions="Start"
                 ImageSource="profile_icon"
                 SemanticProperties.Description="Sample AvatarView showing size at 16x16 and 'micro' font."
-                WidthRequest="40" />
+                WidthRequest="40">
+                <mct:AvatarView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToProfileCommand}" />
+                </mct:AvatarView.GestureRecognizers>
+            </mct:AvatarView>
         </Grid>
 
         <VerticalStackLayout Grid.Row="1" Padding="10">
@@ -201,7 +205,8 @@
                                 HorizontalOptions="End"
                                 Text="See All"
                                 TextColor="#7F3DFF"
-                                VerticalOptions="Center" />
+                                VerticalOptions="Center" 
+                                Command="{Binding NavigateToTransactionsListCommand}"/>
 
                         </Grid>
                     </tabview:SfTabItem.Content>
@@ -229,7 +234,8 @@
                                 HorizontalOptions="End"
                                 Text="See All"
                                 TextColor="#7F3DFF"
-                                VerticalOptions="Start" />
+                                VerticalOptions="Start" 
+                                Command="{Binding NavigateToTransactionsListCommand}"/>
                         </Grid>
                     </tabview:SfTabItem.Content>
                 </tabview:SfTabItem>
@@ -256,7 +262,8 @@
                                 HorizontalOptions="End"
                                 Text="See All"
                                 TextColor="#7F3DFF"
-                                VerticalOptions="Start" />
+                                VerticalOptions="Start" 
+                                Command="{Binding NavigateToTransactionsListCommand}"/>
                         </Grid>
                     </tabview:SfTabItem.Content>
                 </tabview:SfTabItem>

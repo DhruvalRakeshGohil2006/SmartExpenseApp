@@ -4,6 +4,7 @@ using SmartExpenseApp.Models;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 
 namespace SmartExpenseApp.ViewModels
 {
@@ -23,9 +24,31 @@ namespace SmartExpenseApp.ViewModels
             }
         }
 
+        private Transaction _selectedTransaction;
+
+        public Transaction SelectedTransaction
+        {
+            get => _selectedTransaction;
+            set
+            {
+                if (_selectedTransaction != value)
+                {
+                    _selectedTransaction = value;
+                    OnPropertyChanged(nameof(SelectedTransaction));
+
+                    // Navigate to Transaction Details when an item is selected
+                    if (_selectedTransaction != null)
+                    {
+                        TransactionSelectedCommand.Execute(_selectedTransaction);
+                    }
+                }
+            }
+        }
+
         public ObservableCollection<TransactionGroup> GroupedTransactions { get; private set; }
             = new ObservableCollection<TransactionGroup>();
 
+        public ICommand TransactionSelectedCommand { get; }
 
         public GroupedTransactionsViewModel(SmartExpenseAppDatabase smartExpenseAppDatabase, bool emptyGroups = false)
         {
@@ -34,6 +57,8 @@ namespace SmartExpenseApp.ViewModels
             Transactions = new ObservableCollection<Transaction>();
             
             GetGroupedTransactionList();
+
+            TransactionSelectedCommand = new Command<Transaction>(async (transaction) => await NavigateToDetails(transaction));
         }
 
         private async Task LoadTransactions()
@@ -100,6 +125,14 @@ namespace SmartExpenseApp.ViewModels
         //        return transactionDate.ToString("yyyy-MM-dd");
         //    }
         //}
+
+        private async Task NavigateToDetails(Transaction transaction)
+        {
+            if (transaction != null)
+            {
+                await Shell.Current.GoToAsync($"transactiondetails?transactionId={transaction.ID}");
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
