@@ -1,4 +1,5 @@
 ﻿using SmartExpenseApp.Models;
+using SmartExpenseApp.Utilities;
 using SQLite;
 using System.Text.RegularExpressions;
 using static SmartExpenseApp.Utilities.SmartExpenseEnums;
@@ -57,11 +58,6 @@ namespace SmartExpenseApp.Data
             return await database.Table<Transaction>().ToListAsync();
         }
 
-        public async Task<Transaction> GetTransactionAsync(int id)
-        {
-            return await database.Table<Transaction>().Where(i => i.ID == id).FirstOrDefaultAsync();
-        }
-
         public async Task<Transaction> GetTransactionByIdAsync(int id)
         {
             return await database.Table<Transaction>()
@@ -97,7 +93,7 @@ namespace SmartExpenseApp.Data
 
         public async Task<int> DeleteAllTransactionsAsync()
         {
-            return await database.ExecuteAsync("DELETE FROM [Transaction] where IsManual=0");
+            return await database.ExecuteAsync("DELETE FROM [Transaction] where IsManual = 0");
         }
 
         public async Task<int> AddSMSMessageTransactionsAsync(IEnumerable<Transaction> transactions)
@@ -115,16 +111,23 @@ namespace SmartExpenseApp.Data
 
             foreach (var sms in smsMessages)
             {
-                var transactionType = DetermineTransactionType(sms.Message);
+                var messageExists = await TransactionExistsAsync(DateTime.Parse(sms.Date), sms.Address);
+                if (messageExists)
+                {
+                    continue; // Skip if the transaction already exists
+                }
+
+                var transactionType = FetchTransactionType(sms.Message);
+                var title = ExtractTitleFromMessage(sms.Message);
 
                 var transaction = new Transaction
                 {
-                    Title = ExtractTitleFromMessage(sms.Message),
+                    Title = title,
                     Description = sms.Message,
                     Amount = ExtractAmountFromMessage(sms.Message, transactionType),
                     Date = DateTime.Parse(sms.Date),
-                    Category = "SMS",
-                    Source = sms.Address,
+                    Category = FetchCategoryFromTitle(title),
+                    Sender = sms.Address,
                     TransactionType = transactionType,
                     IsManual = 0
                 };
@@ -166,7 +169,7 @@ namespace SmartExpenseApp.Data
             return "0";
         }
 
-        private TransactionType DetermineTransactionType(string message)
+        private TransactionType FetchTransactionType(string message)
         {
             if (message.Contains("credited", StringComparison.OrdinalIgnoreCase))
             {
@@ -193,6 +196,28 @@ namespace SmartExpenseApp.Data
             }
             
             return "0";
+        }
+
+        public async Task<bool> TransactionExistsAsync(DateTime date, string sender)
+        {
+            var existingTransaction = await database.Table<Transaction>()
+                .Where(t => t.Date == date && t.Sender == sender)
+                .FirstOrDefaultAsync();
+
+            return existingTransaction != null;
+        }
+
+        private string FetchCategoryFromTitle(string title)
+        {
+            foreach (var mapping in Constants.CategoryMappings)
+            {
+                if (title.Contains(mapping.Key, StringComparison.OrdinalIgnoreCase))
+                {
+                    return mapping.Value;
+                }
+            }
+
+            return "Others"; // Default category if no match is found
         }
     }
 }

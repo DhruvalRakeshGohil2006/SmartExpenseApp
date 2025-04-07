@@ -230,7 +230,7 @@ namespace SmartExpenseApp.ViewModels
 
                     } while (cursor.MoveToNext());
 
-                    await _smartExpenseAppDatabase.DeleteAllTransactionsAsync();
+                    //await _smartExpenseAppDatabase.DeleteAllTransactionsAsync();
 
                     await _smartExpenseAppDatabase.TransformAndSaveSMSMessagesAsync(SMSMessages);
                 }

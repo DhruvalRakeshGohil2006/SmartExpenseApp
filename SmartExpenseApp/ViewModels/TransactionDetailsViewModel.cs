@@ -33,7 +33,7 @@ namespace SmartExpenseApp.ViewModels
         {
             if (Transaction != null)
             {
-                await Shell.Current.GoToAsync($"///addTransaction?transactionId={Transaction.ID}");
+                await Shell.Current.GoToAsync($"addtransactionpage?transactionId={Transaction.ID}");
             }
         }
     }

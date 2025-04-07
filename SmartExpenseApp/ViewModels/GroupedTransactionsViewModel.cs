@@ -55,7 +55,7 @@ namespace SmartExpenseApp.ViewModels
             _smartExpenseAppDatabase = smartExpenseAppDatabase;
             includeEmptyGroups = emptyGroups;
             Transactions = new ObservableCollection<Transaction>();
-            
+                                                
             GetGroupedTransactionList();
 
             TransactionSelectedCommand = new Command<Transaction>(async (transaction) => await NavigateToDetails(transaction));
@@ -66,6 +66,7 @@ namespace SmartExpenseApp.ViewModels
             var transactions = await _smartExpenseAppDatabase.GetTransactionsAsync();
 
             Transactions.Clear();
+            GroupedTransactions.Clear();
 
             foreach (var transaction in transactions)
             {
@@ -90,41 +91,6 @@ namespace SmartExpenseApp.ViewModels
         {
             return new DateTime(year, month, 1).ToString("MMMM yyyy");
         }
-
-        //private string GetGroupName(string date)
-        //{
-        //    var transactionDate = DateTime.Parse(date);
-        //    var today = DateTime.Today;
-        //    var yesterday = today.AddDays(-1);
-        //    var startOfWeek = today.AddDays(-(int)today.DayOfWeek);
-        //    var startOfMonth = new DateTime(today.Year, today.Month, 1);
-        //    var startOfYear = new DateTime(today.Year, 1, 1);
-
-        //    if (transactionDate.Date == today)
-        //    {
-        //        return "Today";
-        //    }
-        //    else if (transactionDate.Date == yesterday)
-        //    {
-        //        return "Yesterday";
-        //    }
-        //    else if (transactionDate.Date >= startOfWeek)
-        //    {
-        //        return "This Week";
-        //    }
-        //    else if (transactionDate.Date >= startOfMonth)
-        //    {
-        //        return "This Month";
-        //    }
-        //    else if (transactionDate.Date >= startOfYear)
-        //    {
-        //        return "This Year";
-        //    }
-        //    else
-        //    {
-        //        return transactionDate.ToString("yyyy-MM-dd");
-        //    }
-        //}
 
         private async Task NavigateToDetails(Transaction transaction)
         {
