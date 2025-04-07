@@ -41,6 +41,7 @@ public partial class HomeScreen : ContentPage
                 viewModel.Balance = 0;
 
                 await ((AsyncCommand<int>)viewModel.ReadSMSCommand).ExecuteAsync(Constants.SMSMessagesMaxFetchCount);
+                //database.DeleteAllTransactionsAsync();
 
                 viewModel.GetFilteredTransactionList(viewModel.TabViewCurrentSelectedIndex);
 

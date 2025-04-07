@@ -14,6 +14,7 @@ namespace SmartExpenseApp.Models
         public string Category { get; set; }    
         public DateTime Date { get; set; }
         public string Source { get; set; }
+        public string Sender { get; set; }
         public TransactionType TransactionType { get; set; }
         public int IsManual { get; set; }
     }

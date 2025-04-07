@@ -32,7 +32,9 @@
             Grid.Row="1"
             BackgroundColor="White"
             IsGrouped="true"
-            ItemsSource="{Binding GroupedTransactions}">
+            ItemsSource="{Binding GroupedTransactions}"
+            SelectionMode="Single"
+            SelectedItem="{Binding SelectedTransaction, Mode=TwoWay}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10">
@@ -52,16 +54,16 @@
                             Grid.RowSpan="2"
                             Grid.Column="0"
                             BackgroundColor="Beige"
-                            Padding="10">
+                            Padding="8">
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="10" />
                             </Border.StrokeShape>
                             <Image
-                                HeightRequest="30"
+                                HeightRequest="35"
                                 HorizontalOptions="Center"
                                 Source="{Binding Category, Converter={StaticResource CategoryToImageSourceConverter}}"
                                 VerticalOptions="Center"
-                                WidthRequest="30" />
+                                WidthRequest="35" />
                         </Border>
                         <Label
                             Grid.Row="0"
@@ -92,7 +94,6 @@
                                     <Setter Property="Text" Value="Auto fetch - SMS" />
                                 </DataTrigger>
                             </Label.Triggers>
-
                         </Label>
                         <Label
                             Grid.Row="0"

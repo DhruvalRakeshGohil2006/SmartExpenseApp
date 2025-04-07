@@ -12,11 +12,8 @@ namespace SmartExpenseApp
             Routing.RegisterRoute("signup", typeof(SignUp));
             Routing.RegisterRoute("login", typeof(Login));
             Routing.RegisterRoute("account", typeof(Account));
-        }
-
-        private void Shell_Appearing(object sender, EventArgs e)
-        {
-
+            Routing.RegisterRoute("transactiondetails", typeof(TransactionDetails));
+            Routing.RegisterRoute("addtransactionpage", typeof(AddTransactionPage));
         }
     }
 }

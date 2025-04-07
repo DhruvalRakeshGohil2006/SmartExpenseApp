@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
 using static SmartExpenseApp.Utilities.SmartExpenseEnums;
+using MauiCommand = Microsoft.Maui.Controls.Command;
 
 namespace SmartExpenseApp.ViewModels
 {
@@ -26,6 +27,10 @@ namespace SmartExpenseApp.ViewModels
         public int TabViewCurrentSelectedIndex { get; set; }
 
         public ICommand ReadSMSCommand { get; }
+
+        public ICommand NavigateToProfileCommand { get; }
+
+        public ICommand NavigateToTransactionsListCommand { get; }
 
         public ObservableCollection<Transaction> Transactions
         {
@@ -89,7 +94,16 @@ namespace SmartExpenseApp.ViewModels
             Transactions = new ObservableCollection<Transaction>();
             ReadSMSCommand = new AsyncCommand<int>(async (parameter) => await ReadSMSMessagesAsync(parameter));
 
+            NavigateToProfileCommand = new MauiCommand(async () => await NavigateToProfilePage());
+
+            NavigateToTransactionsListCommand = new MauiCommand(async () => await Shell.Current.GoToAsync("///transactions"));
+
             filteredTransactionsList = new List<Transaction>();
+        }
+
+        private async Task NavigateToProfilePage()
+        {
+            await Shell.Current.GoToAsync("///profile");
         }
 
         public void GetFilteredTransactionList(int tabViewCurrentSelectedIndex)
@@ -216,7 +230,7 @@ namespace SmartExpenseApp.ViewModels
 
                     } while (cursor.MoveToNext());
 
-                    await _smartExpenseAppDatabase.DeleteAllTransactionsAsync();
+                    //await _smartExpenseAppDatabase.DeleteAllTransactionsAsync();
 
                     await _smartExpenseAppDatabase.TransformAndSaveSMSMessagesAsync(SMSMessages);
                 }

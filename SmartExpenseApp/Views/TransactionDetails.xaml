@@ -22,9 +22,9 @@
 
         <!-- Amount and Transaction Info (Row 1) -->
         <VerticalStackLayout Grid.Row="1" BackgroundColor="#7F3DFF" Padding="0,60, 0, 25" HorizontalOptions="FillAndExpand" Spacing="18">
-            <Label Text="$120" FontSize="60" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" x:Name="TransactionAmount"/>
-            <Label Text="Buy some grocery" FontSize="18" TextColor="White" HorizontalOptions="Center" x:Name="TransactionDescription"/>
-            <Label Text="Saturday 4 June 2021   16:20" FontSize="16" TextColor="White" HorizontalOptions="Center" x:Name="TransactionDateTime"/>
+            <Label Text="{Binding Transaction.Amount}" FontSize="60" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" x:Name="TransactionAmount"/>
+            <Label Text="{Binding Transaction.Title}" FontSize="18" TextColor="White" HorizontalOptions="Center"/>
+            <Label Text="{Binding Transaction.Date}" FontSize="16" TextColor="White" HorizontalOptions="Center" x:Name="TransactionDateTime"/>
         </VerticalStackLayout>
 
         <!-- Type, Category, Wallet Details (Row 2) -->
@@ -33,19 +33,19 @@
                 <!-- Type Column -->
                 <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center">
                     <Label Text="Type" FontSize="14" TextColor="Gray" HorizontalOptions="Center"/>
-                    <Label FontSize="16" TextColor="Black" HorizontalOptions="Center" x:Name="LabelExpenseType" Text="Expense"/>
+                    <Label FontSize="16" TextColor="Black" HorizontalOptions="Center" x:Name="LabelExpenseType" Text="{Binding Transaction.TransactionType}"/>
                 </VerticalStackLayout>
 
                 <!-- Category Column -->
                 <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center">
                     <Label Text="Category" FontSize="14" TextColor="Gray" HorizontalOptions="Center"/>
-                    <Label FontSize="16" TextColor="Black" HorizontalOptions="Center" x:Name="LabelShopping" Text="Shopping"/>
+                    <Label FontSize="16" TextColor="Black" HorizontalOptions="Center" x:Name="LabelShopping" Text="{Binding Transaction.Category}"/>
                 </VerticalStackLayout>
 
                 <!-- Wallet Column -->
                 <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center">
-                    <Label Text="Wallet" FontSize="14" TextColor="Gray" HorizontalOptions="Center"/>
-                    <Label FontSize="16" TextColor="Black" HorizontalOptions="Center" x:Name="LabelWallet" Text="Wallet"/>
+                    <Label Text="Source" FontSize="14" TextColor="Gray" HorizontalOptions="Center"/>
+                    <Label FontSize="16" TextColor="Black" HorizontalOptions="Center" x:Name="LabelWallet" Text="{Binding Transaction.Source}"/>
                 </VerticalStackLayout>
             </Grid>
         </Frame>
@@ -53,7 +53,7 @@
         <!-- Description Section (Row 3) -->
         <VerticalStackLayout Grid.Row="3" Margin="15">
             <Label Text="Description" FontSize="22" TextColor="Gray" FontAttributes="Bold"/>
-            <Label x:Name="TransactionDescription" Text="This is Description" FontSize="16" TextColor="Black" Padding="0,10,0,0" />
+            <Label x:Name="TransactionDescription" Text="{Binding Transaction.Description}" FontSize="16" TextColor="Black" Padding="0,10,0,0" />
         </VerticalStackLayout>
 
         <!-- Edit Button (Row 4) -->
@@ -67,6 +67,7 @@
                 HeightRequest="55"
                 WidthRequest="340"
                 HorizontalOptions="Center"
-                VerticalOptions="End"/>
+                VerticalOptions="End"
+                Command="{Binding EditTransactionCommand}"/>
     </Grid>
 </ContentPage>
