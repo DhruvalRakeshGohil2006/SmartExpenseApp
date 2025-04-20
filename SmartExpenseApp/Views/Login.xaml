@@ -15,7 +15,6 @@
             HorizontalOptions="CenterAndExpand" />
 
         <!-- Email Entry -->
-        <!-- Email Entry -->
         <inputLayout:SfTextInputLayout Hint="Email" 
                                        ContainerType="Outlined"
                                        OutlineCornerRadius="20"
@@ -24,7 +23,7 @@
                                        HorizontalOptions="CenterAndExpand"
                                        HeightRequest="80"
                                        WidthRequest="350">
-            <Entry x:Name="EmailEntry" Text="abc@gmail.com" />
+            <Entry x:Name="EmailEntry"/>
         </inputLayout:SfTextInputLayout>
 
         <!-- Password Entry with Visibility Toggle -->
@@ -38,7 +37,7 @@
                                HorizontalOptions="CenterAndExpand"
                                HeightRequest="80"
                                WidthRequest="350">
-            <Entry x:Name="PasswordEntry" Text="pass@123" />
+            <Entry x:Name="PasswordEntry"/>
         </inputLayout:SfTextInputLayout>
 
         <!-- Login Button -->
