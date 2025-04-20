@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SmartExpenseApp.Views.Profile"
-             Title="Profile">
+<ContentPage
+    x:Class="SmartExpenseApp.Views.Profile"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Profile">
 
     <VerticalStackLayout Padding="20" Spacing="20">
 
@@ -14,54 +15,96 @@
             </Grid.ColumnDefinitions>
 
             <!-- Profile Image -->
-            <Frame WidthRequest="80" HeightRequest="80" CornerRadius="40" BorderColor="violet" Padding="0" Grid.Column="0">
-                <Image Source="profile_icon.png" Aspect="AspectFill" />
+            <Frame
+                Grid.Column="0"
+                BorderColor="Purple"
+                CornerRadius="40"
+                HeightRequest="80"
+                Padding="0"
+                WidthRequest="80">
+                <Image Aspect="AspectFill" Source="profile_icon.png" />
             </Frame>
 
             <!-- Username and Edit Button -->
-            <VerticalStackLayout Grid.Column="1" Spacing="5" VerticalOptions="Center">
-                <Label Text="DB Cooper" FontSize="Large" FontAttributes="Bold" />
-                <Label Text="Username" FontSize="Small" TextColor="Gray" />
+            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Padding="10"
+                    Text="Dhruval" />
+                <Label
+                    FontSize="Small"
+                    Padding="10,0,0,0"
+                    Text="dhruval@gmail.com"
+                    TextColor="Gray" />
             </VerticalStackLayout>
         </Grid>
 
         <!-- Option Buttons -->
-        <VerticalStackLayout Spacing="15">
+        <VerticalStackLayout Spacing="20">
 
             <!-- Account Button -->
-            <Frame CornerRadius="10" BackgroundColor="#F0F0FF" Padding="15">
+            <!--<Frame CornerRadius="10" BackgroundColor="#F0F0FF" Padding="15">
                 <HorizontalStackLayout>
                     <Image Source="account_wallet_icon.png" WidthRequest="30" HeightRequest="30" />
                     <Label Text="Account" FontSize="Medium" VerticalOptions="Center" Margin="10,0,0,0"/>
                 </HorizontalStackLayout>
             </Frame>
 
+            -->
             <!-- Settings Button -->
+            <!--
             <Frame CornerRadius="10" BackgroundColor="#F0F0FF" Padding="15">
                 <HorizontalStackLayout>
                     <Image Source="account_settings_icon.png" WidthRequest="30" HeightRequest="30" />
                     <Label Text="Settings" FontSize="Medium" VerticalOptions="Center" Margin="10,0,0,0"/>
                 </HorizontalStackLayout>
-            </Frame>
+            </Frame>-->
 
             <!-- Export Data Button -->
-            <Frame CornerRadius="10" BackgroundColor="#F0F0FF" Padding="15">
+            <Frame
+                Margin="0,30,0,0"
+                BackgroundColor="#F0F0FF"
+                CornerRadius="10"
+                Padding="15">
                 <HorizontalStackLayout>
-                    <Image Source="account_upload_icon.png" WidthRequest="30" HeightRequest="30" />
-                    <Label Text="Export Data" FontSize="Medium" VerticalOptions="Center" Margin="10,0,0,0"/>
+                    <Image
+                        HeightRequest="30"
+                        Source="account_upload_icon.png"
+                        WidthRequest="30" />
+                    <Label
+                        Margin="10,0,0,0"
+                        FontSize="Medium"
+                        Text="Export Data"
+                        VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ExportTapGestureRecognizer_Tapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
                 </HorizontalStackLayout>
             </Frame>
 
             <!-- Logout Button -->
-            <Frame CornerRadius="10" BackgroundColor="#F0F0FF" Padding="15">
+            <Frame
+                BackgroundColor="#F0F0FF"
+                CornerRadius="10"
+                Padding="15">
                 <HorizontalStackLayout>
-                    <Image Source="account_logout_icon.png" WidthRequest="30" HeightRequest="30" />
-                    <Label Text="Logout" FontSize="Medium" VerticalOptions="Center" Margin="10,0,0,0"/>
+                    <Image
+                        HeightRequest="30"
+                        Source="account_logout_icon.png"
+                        WidthRequest="30" />
+                    <Label
+                        Margin="10,0,0,0"
+                        FontSize="Medium"
+                        Text="Logout"
+                        VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="LogoutTapGestureRecognizer_Tapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
                 </HorizontalStackLayout>
             </Frame>
-
         </VerticalStackLayout>
-
     </VerticalStackLayout>
-
 </ContentPage>
