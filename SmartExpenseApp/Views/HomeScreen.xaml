@@ -72,7 +72,7 @@
             Grid.Row="2"
             BackgroundColor="Transparent"
             HorizontalOptions="CenterAndExpand"
-            Padding="5"
+            Padding="10"
             Spacing="5">
 
             <Frame
@@ -102,13 +102,14 @@
                         Grid.Row="0"
                         Grid.RowSpan="2"
                         Grid.Column="0"
+                        HeightRequest="40"
                         Source="income_icon.png"
-                        WidthRequest="30" />
+                        WidthRequest="40" />
                     <Label
                         Grid.Row="0"
                         Grid.Column="1"
-                        Margin="5,0,0,0"
-                        FontSize="12"
+                        Margin="7,0,0,0"
+                        FontSize="14"
                         Text="Income"
                         TextColor="#FFFFFF" />
                     <Label
@@ -147,13 +148,14 @@
                         Grid.Row="0"
                         Grid.RowSpan="2"
                         Grid.Column="0"
+                        HeightRequest="40"
                         Source="expense_icon.png"
-                        WidthRequest="30" />
+                        WidthRequest="40" />
                     <Label
                         Grid.Row="0"
                         Grid.Column="1"
-                        Margin="5,0,0,0"
-                        FontSize="12"
+                        Margin="7,0,0,0"
+                        FontSize="14"
                         Text="Expenses"
                         TextColor="#FFFFFF" />
                     <Label
@@ -198,6 +200,7 @@
                                 Grid.Row="0"
                                 Margin="10"
                                 BackgroundColor="#EEE5FF"
+                                Command="{Binding NavigateToTransactionsListCommand}"
                                 CornerRadius="18"
                                 FontAttributes="Bold"
                                 FontSize="12"
@@ -205,8 +208,7 @@
                                 HorizontalOptions="End"
                                 Text="See All"
                                 TextColor="#7F3DFF"
-                                VerticalOptions="Center" 
-                                Command="{Binding NavigateToTransactionsListCommand}"/>
+                                VerticalOptions="Center" />
 
                         </Grid>
                     </tabview:SfTabItem.Content>
@@ -231,11 +233,11 @@
                                 Grid.Row="0"
                                 Margin="10"
                                 BackgroundColor="#EEE5FF"
+                                Command="{Binding NavigateToTransactionsListCommand}"
                                 HorizontalOptions="End"
                                 Text="See All"
                                 TextColor="#7F3DFF"
-                                VerticalOptions="Start" 
-                                Command="{Binding NavigateToTransactionsListCommand}"/>
+                                VerticalOptions="Start" />
                         </Grid>
                     </tabview:SfTabItem.Content>
                 </tabview:SfTabItem>
@@ -259,11 +261,11 @@
                                 Grid.Row="0"
                                 Margin="10"
                                 BackgroundColor="#EEE5FF"
+                                Command="{Binding NavigateToTransactionsListCommand}"
                                 HorizontalOptions="End"
                                 Text="See All"
                                 TextColor="#7F3DFF"
-                                VerticalOptions="Start" 
-                                Command="{Binding NavigateToTransactionsListCommand}"/>
+                                VerticalOptions="Start" />
                         </Grid>
                     </tabview:SfTabItem.Content>
                 </tabview:SfTabItem>

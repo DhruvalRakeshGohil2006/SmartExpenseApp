@@ -28,7 +28,7 @@ namespace SmartExpenseApp.ViewModels
             {
                 new SfSegmentItem() {  ImageSource="expense_icon.png", Text="Expense" },
                 new SfSegmentItem() { ImageSource="income_icon.png", Text="Income" },
-                new SfSegmentItem() { ImageSource ="icon_scan_document.png", Text="Scan" },
+                //new SfSegmentItem() { ImageSource ="icon_scan_document.png", Text="Scan" },
             };
 
             Categories =

@@ -26,7 +26,7 @@ public partial class SignUp : ContentPage
         }
         else
         {
-            await Shell.Current.GoToAsync("account");
+            await Shell.Current.GoToAsync("///home");
         }
     }
 }

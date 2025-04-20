@@ -33,7 +33,7 @@
 
         <Tab
             Icon="add_button.png"
-            Route="addTransaction"
+            Route="addtransactionpage"
             Title="Add">
             <ShellContent ContentTemplate="{DataTemplate local:AddTransactionPage}" />
         </Tab>

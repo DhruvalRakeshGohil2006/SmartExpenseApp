@@ -55,7 +55,7 @@ public partial class AddTransactionPage : ContentPage
 
     private async void AddTransactionButton_Clicked(object sender, EventArgs e)
     {
-        // Validate that all fields contain values
+        //Validate that all fields contain values
         if (string.IsNullOrWhiteSpace(AmountEntry.Text) ||
             string.IsNullOrWhiteSpace(TitleEntry.Text) ||
             string.IsNullOrWhiteSpace(DateEntry.Text) ||
@@ -86,12 +86,13 @@ public partial class AddTransactionPage : ContentPage
 
         Transaction transaction;
 
-        if(int.TryParse(TransactionId, out int id))
+        if (int.TryParse(TransactionId, out int id))
         {
             transaction = await database.GetTransactionByIdAsync(id);
             transaction.Amount = AmountEntry.Text;
             transaction.Title = TitleEntry.Text;
             transaction.Date = Convert.ToDateTime(DateEntry.Text);
+            transaction.Description = DescriptionEditor.Text;
             transaction.Category = CategoryPicker.SelectedItem?.ToString();
             transaction.Source = SourcePicker.SelectedItem?.ToString();
         }
