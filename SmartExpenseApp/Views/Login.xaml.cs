@@ -37,6 +37,9 @@ public partial class Login : ContentPage
                 // Login successful
                 await DisplayAlert("Success", "Login successful!", "OK");
                 await Shell.Current.GoToAsync("//home");
+
+                EmailEntry.Text = string.Empty;
+                PasswordEntry.Text = string.Empty;
             }
             else
             {

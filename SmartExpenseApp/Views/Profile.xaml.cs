@@ -1,4 +1,4 @@
-using Microsoft.Maui.Controls;
+using System.Text;
 
 namespace SmartExpenseApp.Views
 {
@@ -9,38 +9,44 @@ namespace SmartExpenseApp.Views
             InitializeComponent();
         }
 
-        // Event handler for Account button
-        private void OnAccountClicked(object sender, EventArgs e)
+        private async void ExportTapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
         {
-            // Navigate to Account page or show account information
-            DisplayAlert("Account", "Account button clicked", "OK");
-            // Navigation Example:
-            // await Navigation.PushAsync(new AccountPage());
+#if ANDROID
+                try
+                {
+                    var transactions = await App.Database.GetTransactionsAsync(); // Replace with your method
+
+                    StringBuilder csvBuilder = new StringBuilder();
+                    csvBuilder.AppendLine("Date,Type,Title,Category,Source,Description,Amount");
+
+                    foreach (var trans in transactions)
+                    {
+                        csvBuilder.AppendLine($"{trans.Date},{trans.TransactionType},{trans.Title},{trans.Category},{trans.Source},{trans.Description},{trans.Amount}");
+                    }
+
+                    string fileName = $"SmartExpense_Export_{DateTime.Now:yyyyMMddHHmmss}.csv";
+                    string fileContent = csvBuilder.ToString();
+
+                    var context = Android.App.Application.Context;
+                    var downloadsPath = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDownloads).AbsolutePath;
+                    var filePath = Path.Combine(downloadsPath, fileName);
+
+                    File.WriteAllText(filePath, fileContent);
+
+                    await Shell.Current.DisplayAlert("Success", $"File saved to Downloads:\n{fileName}", "OK");
+                }
+                catch (Exception ex)
+                {
+                    await Shell.Current.DisplayAlert("Error", $"Export failed: {ex.Message}", "OK");
+                }
+#else
+            await Shell.Current.DisplayAlert("Unsupported", "This export path only works on Android.", "OK");
+            #endif
         }
 
-        // Event handler for Settings button
-        private void OnSettingsClicked(object sender, EventArgs e)
+        private async void LogoutTapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
         {
-            // Navigate to Settings page or show settings
-            DisplayAlert("Settings", "Settings button clicked", "OK");
-            // Navigation Example:
-            // await Navigation.PushAsync(new SettingsPage());
-        }
-
-        // Event handler for Export Data button
-        private void OnExportDataClicked(object sender, EventArgs e)
-        {
-            // Trigger export data functionality
-            DisplayAlert("Export Data", "Export Data button clicked", "OK");
-        }
-
-        // Event handler for Logout button
-        private void OnLogoutClicked(object sender, EventArgs e)
-        {
-            // Perform logout operation
-            DisplayAlert("Logout", "Logging out...", "OK");
-            // Example: Clear session, navigate to login screen, etc.
+            await Shell.Current.GoToAsync("///login");
         }
     }
 }
-
