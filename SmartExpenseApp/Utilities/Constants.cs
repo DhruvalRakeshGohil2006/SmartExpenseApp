@@ -53,10 +53,15 @@
             { "Foodpanda", "Food" },
             { "Pizza", "Food" },
             { "Meal", "Food" },
+            { "Wadewa", "Food" },
             { "Sweets", "Food" },
             { "Vadapav", "Food" },
             { "Bakery", "Food" },
             { "Bakers", "Food" },
+            { "Dosa", "Food" },
+            { "Chutney", "Food" },
+            { "Idli", "Food" },
+            { "Sambhar", "Food" },
 
             // Shopping
             { "Amazon", "Shopping" },
@@ -115,6 +120,34 @@
             { "Transfer", "Others" },
             { "Credit", "Others" },
             { "Debit", "Others" },
+        };
+
+        public static readonly Dictionary<string, string> SourceMappings = new Dictionary<string, string>(
+            StringComparer.OrdinalIgnoreCase)
+        {
+            { "HDFCBK", "HDFC" },
+            { "ICICIB", "ICICI" },
+            { "ICICIL", "ICICI" },
+            { "ICICIC", "ICICI" },
+            { "ICICIH", "ICICI" },
+            { "ICICIN", "ICICI" },
+            { "ICICIBANK", "ICICI" },
+            { "AMAZON", "Amazon" },
+            { "PAYTM", "Paytm" },
+            { "GPAY", "Google Pay" },
+            { "FLPKRT", "Flipkart" },
+            { "PNB", "Punjab National" },
+            { "AXISBK", "Axis" },
+            { "SBIUPI", "SBI" },
+            { "SBIINB", "SBI" },
+            { "SBIPSG", "SBI" },
+            { "SBICRD", "SBI" },
+            { "SBISMS", "SBI" },
+            { "CSMSBI", "SBI" },
+            { "SBIBNK", "SBI" },                             
+            { "BOBSMS", "BOB" },
+            { "BARBUD", "BOB" },
+            { "BARBNK", "BOB" },
         };
     }
 }

@@ -120,6 +120,7 @@ namespace SmartExpenseApp.Data
 
                 var transactionType = FetchTransactionType(sms.Message);
                 var title = ExtractTitleFromMessage(sms.Message);
+                var source = GetSourceFromAddress(sms.Address);
 
                 var transaction = new Transaction
                 {
@@ -128,6 +129,7 @@ namespace SmartExpenseApp.Data
                     Amount = ExtractAmountFromMessage(sms.Message, transactionType),
                     Date = DateTime.Parse(sms.Date),
                     Category = FetchCategoryFromTitle(title),
+                    Source = source,
                     Sender = sms.Address,
                     TransactionType = transactionType,
                     IsManual = 0
@@ -219,6 +221,23 @@ namespace SmartExpenseApp.Data
             }
 
             return "Others"; // Default category if no match is found
+        }
+
+        public string GetSourceFromAddress(string address)
+        {
+            // Extract the actual sender ID (e.g., from "VK-HDFCBK" → "HDFCBK")
+            string[] parts = address.Split('-');
+            string senderId = parts.Length > 1 ? parts[1] : parts[0];
+
+            foreach (var mapping in Constants.SourceMappings)
+            {
+                if (senderId.Contains(mapping.Key, StringComparison.OrdinalIgnoreCase))
+                {
+                    return mapping.Value;
+                }
+            }
+
+            return "";
         }
 
         public async Task<int> SaveUserAsync(User user)
